@@ -6,6 +6,7 @@ namespace RTS.Player
 {
     public class PlayerManager : Singleton<PlayerManager>
     {
+        public  Transform playerUnits;
         void Start()
         {
 

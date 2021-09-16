@@ -7,18 +7,32 @@ namespace RTS.InputManager
     {
         private RaycastHit hit;
         private List<Transform> selectUnits = new List<Transform>();
+
+        private bool isDragging = false;
+        private Vector3 mousePos;
+
         void Start()
         {
+
+
         }
-
-        void Update()
+        private void OnGUI()
         {
+            if(isDragging)
+            {
+                Rect rect = MultiSelect.GetScreenRect(mousePos, Input.mousePosition);
+                MultiSelect.DrawScreenRect(rect, new Color(0f, 0f, 0f, 0.25f));
+                MultiSelect.DrawScreenRectBorder(rect, 3, Color.blue);
 
+
+            }
         }
         public void HandleUnitMovement()
         {
             if (Input.GetMouseButtonDown(0))
             {
+                mousePos = Input.mousePosition;
+
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out hit))
@@ -31,6 +45,7 @@ namespace RTS.InputManager
                             SelectUnit(hit.transform,Input.GetKey(KeyCode.LeftShift));
                             break;
                         default:
+                            isDragging = true;
                             DeselectUnits();
                             break;
 
@@ -38,6 +53,22 @@ namespace RTS.InputManager
                 }
 
             }
+            if(Input.GetMouseButtonUp(0))
+            {
+                foreach(Transform child in Player.PlayerManager.Instance.playerUnits)
+                {
+                    foreach(Transform unit in child)
+                    {
+                        if(isWithinSelectionBounds(unit))
+                        {
+                            SelectUnit(unit, true);
+                        }
+                    }
+                }
+                isDragging = false;
+            }
+
+
         }
 
         private void SelectUnit(Transform unit, bool canMutiselect = false)
@@ -58,6 +89,18 @@ namespace RTS.InputManager
                 selectUnits[i].Find("Highlight").gameObject.SetActive(false);
             }
             selectUnits.Clear();
+
+        }
+        private bool isWithinSelectionBounds(Transform tf)
+        {
+            if(!isDragging)
+            {
+                return false;
+            }
+            Camera cam = Camera.main;
+            Bounds vpBounds = MultiSelect.GetVPBounds(cam, mousePos, Input.mousePosition);
+            return vpBounds.Contains(cam.WorldToViewportPoint(tf.position));
+
 
         }
 
