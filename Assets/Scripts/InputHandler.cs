@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RTS.Units.Player;
+
 namespace RTS.InputManager
 {
     public class InputHandler : Singleton<InputHandler>
@@ -68,6 +70,32 @@ namespace RTS.InputManager
                 isDragging = false;
             }
 
+            if(Input.GetMouseButtonDown(1))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    LayerMask layerHit = hit.transform.gameObject.layer;
+                    switch (layerHit.value)
+                    {
+
+                        case 8:
+                            break;
+                        case 9:
+                            break;
+                        default:
+                            foreach(Transform unit in selectUnits)
+                            {
+                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                pU.MoveUnit(hit.point);
+                            }
+                            break;
+
+                    }
+                }
+            }
+
 
         }
 
@@ -102,6 +130,18 @@ namespace RTS.InputManager
             return vpBounds.Contains(cam.WorldToViewportPoint(tf.position));
 
 
+        }
+
+        private bool HaveSelectedUnits()
+        {
+            if(selectUnits.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
