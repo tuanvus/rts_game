@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using RTS.Player;
 namespace RTS.Units
 {
     public class UnitHandler : Singleton<UnitHandler>
     {
+        public LayerMask pUnitLayer;
+        public LayerMask eUnitLayer;
+
+
+
         [SerializeField]
         BasicUnit worker;
 
@@ -15,7 +20,14 @@ namespace RTS.Units
         [SerializeField]
         BasicUnit healer;
 
-        public (int cost, int attack, int atkRange, int health, int armor) GetBasicUnitStats(string type)
+        private void Start()
+        {
+            eUnitLayer = LayerMask.NameToLayer("EnemyUnits");
+            pUnitLayer = LayerMask.NameToLayer("PlayerUnits");
+
+        }
+
+        public (float cost,float aggroRange, float attack, float atkRange, float health, float armor) GetBasicUnitStats(string type)
         {
             BasicUnit unit;
             switch (type)
@@ -31,38 +43,42 @@ namespace RTS.Units
                     break;
                 default:
                     Debug.Log($"Unity :{type} could not be found ");
-                    return (0, 0, 0, 0, 0);
+                    return (0,0, 0, 0, 0, 0);
             }
-            return (unit.cost, unit.attack, unit.atkRange, unit.health, unit.armor);
+            return (unit.baseStats.cost, unit.baseStats.aggroRange, unit.baseStats.attack, unit.baseStats.atkRange, unit.baseStats.health, unit.baseStats.armor);
         }
         public void SetBasicUnitStats(Transform type)
         {
-            foreach(Transform child in type)
+            Transform pUnits = PlayerManager.Instance.playerUnits;
+            Transform eUnits = PlayerManager.Instance.enemyUnits;
+
+            foreach (Transform child in type)
             {
                 foreach(Transform unit in child)
                 {
                     string unitName = child.name.Substring(0, child.name.Length-1).ToLower();
                     var stats = GetBasicUnitStats(unitName);
-                    Player.PlayerUnit pU;
-                    Player.PlayerUnit pE;
+                    if (type == pUnits)
+                    {
+                        Player.PlayerUnit pU = unit.GetComponent<Player.PlayerUnit>();
+                        pU.baseStats.cost = stats.cost;
+                        pU.baseStats.aggroRange = stats.aggroRange;
 
-                    if (type == RTS.Player.PlayerManager.Instance.playerUnits)
-                    {
-                        pU = unit.GetComponent<Player.PlayerUnit>();
-                        pU.cost = stats.cost;
-                        pU.attack = stats.attack;
-                        pU.atkRange = stats.atkRange;
-                        pU.health = stats.health;
-                        pU.armor = stats.armor;
+                        pU.baseStats.attack = stats.attack;
+                        pU.baseStats.atkRange = stats.atkRange;
+                        pU.baseStats.health = stats.health;
+                        pU.baseStats.armor = stats.armor;
                     }
-                    else if(type == RTS.Player.PlayerManager.Instance.enemyUnits)
+                    else if(type == eUnits)
                     {
-                        //pE = unit.GetComponent<Player.PlayerUnit>();
-                        //pE.cost = stats.cost;
-                        //pE.attack = stats.attack;
-                        //pE.atkRange = stats.atkRange;
-                        //pE.health = stats.health;
-                        //pE.armor = stats.armor;
+                        Enemy.EnemyUnits eU = unit.GetComponent<Enemy.EnemyUnits>();
+                        eU.baseStats.cost = stats.cost;
+                        eU.baseStats.aggroRange = stats.aggroRange;
+
+                        eU.baseStats.attack = stats.attack;
+                        eU.baseStats.atkRange = stats.atkRange;
+                        eU.baseStats.health = stats.health;
+                        eU.baseStats.armor = stats.armor;
                     }
                     //set unit stats in each units
                  

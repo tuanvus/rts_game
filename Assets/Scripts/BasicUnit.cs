@@ -24,11 +24,7 @@ namespace RTS.Units
         [Space(15)]
         [Header("Unit Base Stats")]
         [Space(40)]
-        public int cost;
-        public int attack;
-        public int atkRange;
-        public int health;
-        public int armor;
+        public UnitStatTypes.Base baseStats;
 
     }
 }

@@ -130,6 +130,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661bc4f301d15ce458bca6cf920905aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseStats:
+    cost: 0
+    aggroRange: 0
+    atkRange: 0
+    attack: 0
+    health: 0
+    armor: 0
 --- !u!1 &6858568753382001983
 GameObject:
   m_ObjectHideFlags: 0

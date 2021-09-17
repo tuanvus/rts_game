@@ -8,7 +8,7 @@ namespace RTS.Units.Player
     public class PlayerUnit : MonoBehaviour
     {
         private NavMeshAgent navAgent;
-        public int cost, attack, atkRange, health, armor;
+        public UnitStatTypes.Base baseStats;
         private void OnEnable()
         {
             navAgent = GetComponent<NavMeshAgent>();
