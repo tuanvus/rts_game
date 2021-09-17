@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cae4969a9160944a75bb77e8f230cf, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  isPlayerUnit: 0
-  type: 0
-  unitName: 
-  humanPrefab: {fileID: 0}
-  infectedPrefab: {fileID: 0}
-  cost: 0
-  attack: 0
-  health: 0
-  armor: 0
+  isPlayerUnit: 1
+  type: 1
+  unitName: Warrior
+  humanPrefab: {fileID: 6592504760697021135, guid: 8e9169949db14a94b9da96d9f462b6c4,
+    type: 3}
+  infectedPrefab: {fileID: 3204136208972710563, guid: 561af5341c5cd8b42a81da292d13ac4e,
+    type: 3}
+  cost: 100
+  attack: 20
+  atkRange: 10
+  health: 100
+  armor: 10

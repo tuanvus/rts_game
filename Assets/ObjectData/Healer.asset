@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cae4969a9160944a75bb77e8f230cf, type: 3}
   m_Name: Healer
   m_EditorClassIdentifier: 
-  isPlayerUnit: 0
-  type: 0
+  isPlayerUnit: 1
+  type: 2
   unitName: 
   humanPrefab: {fileID: 0}
   infectedPrefab: {fileID: 0}
-  cost: 0
-  attack: 0
-  health: 0
-  armor: 0
+  cost: 150
+  attack: 25
+  atkRange: 10
+  health: 100
+  armor: 10

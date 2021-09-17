@@ -13,16 +13,20 @@ namespace RTS.Units
             Warrior,
             Healer
         }
-
+        [Space(15)]
+        [Header (" Unit Setting")]
         public bool isPlayerUnit;
         public unitType type;
         public new string unitName;
         public GameObject humanPrefab;
         public GameObject infectedPrefab;
 
-
+        [Space(15)]
+        [Header("Unit Base Stats")]
+        [Space(40)]
         public int cost;
         public int attack;
+        public int atkRange;
         public int health;
         public int armor;
 

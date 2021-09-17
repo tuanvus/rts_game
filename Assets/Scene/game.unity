@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 24879e7c7d513b2419f006af9bba3d04, type: 2}
 --- !u!1 &208582841
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 480866924}
+  - component: {fileID: 480866925}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -183,6 +184,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &480866925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480866923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f984aaa3ef3e0214aa5332c88d7e7596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worker: {fileID: 11400000, guid: 2b507116bd2e08b4783fa2f9edafe620, type: 2}
+  warrior: {fileID: 11400000, guid: d653414c8bf43e54dbbd306ec147a5fb, type: 2}
+  healer: {fileID: 11400000, guid: b6cfc0a261c13f041bc38f52a29f5ad2, type: 2}
 --- !u!1 &808065446
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUnits: {fileID: 1466386832}
+  enemyUnits: {fileID: 1944482188}
 --- !u!1 &1466386831
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +375,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1466386832}
-  - component: {fileID: 1466386833}
   m_Layer: 0
   m_Name: PlayerUnit
   m_TagString: Untagged
@@ -383,18 +399,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1466386833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466386831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f984aaa3ef3e0214aa5332c88d7e7596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1548248600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -663,7 +667,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!64 &1763930733
 MeshCollider:

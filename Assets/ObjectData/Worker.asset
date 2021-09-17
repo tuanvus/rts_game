@@ -21,5 +21,6 @@ MonoBehaviour:
     type: 3}
   cost: 50
   attack: 1
+  atkRange: 10
   health: 25
   armor: 0
