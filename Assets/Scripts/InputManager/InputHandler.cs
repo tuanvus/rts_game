@@ -8,7 +8,7 @@ namespace RTS.InputManager
     public class InputHandler : Singleton<InputHandler>
     {
         private RaycastHit hit;
-        private List<Transform> selectUnits = new List<Transform>();
+        public List<Transform> selectUnits = new List<Transform>();
 
         private bool isDragging = false;
         private Vector3 mousePos;
