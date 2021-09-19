@@ -23,10 +23,7 @@ namespace RTS.Units.Player
         {
             navAgent = GetComponent<NavMeshAgent>();
         }
-        private void Update()
-        {
-            HandleHealthChanged();
-        }
+
         public void MoveUnit(Vector3 _destination)
         {
             navAgent.SetDestination (_destination);
@@ -34,23 +31,16 @@ namespace RTS.Units.Player
         private void HandleHealthChanged()
         {
             Camera cam = Camera.main;
-            unitsStatsDisplay.transform.LookAt (unitsStatsDisplay.transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
+            unitsStatsDisplay.transform
+            .LookAt (unitsStatsDisplay.transform.position + GetComponent<Camera>().transform.rotation * Vector3.forward,GetComponent<Camera>().transform.rotation * Vector3.up);
             healthBarAmount.fillAmount = currenHealth / baseStats.health;
             if (currenHealth <= 0)
             {
                 Die();
             }
         }
-        public void TakeDamage(float damage)
-        {
-            float totalDamage = damage - baseStats.armor;
-            currenHealth -= totalDamage;
-
-        }
         private void Die()
         {
-            InputManager.InputHandler.Instance.selectUnits.Remove(gameObject.transform);
-
             Destroy(gameObject);
         }
         
