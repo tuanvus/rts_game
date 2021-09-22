@@ -21,7 +21,7 @@ namespace RTS.Buildings
             BuildingBasic building;
             switch (type)
             {
-                case "worker":
+                case "barrak":
                     building = barraks;
                     break;
                
