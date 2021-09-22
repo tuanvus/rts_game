@@ -8,6 +8,7 @@ namespace RTS.Units.Enemy
     [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyUnits : MonoBehaviour
     {
+        
         public UnitStatTypes.Base baseStats;
 
         public GameObject unitsStatsDisplay;
@@ -36,7 +37,6 @@ namespace RTS.Units.Enemy
 
         private void Update()
         {
-            HandleHealthChanged();
             atkCooldown -= Time.deltaTime;
 
 
@@ -79,7 +79,7 @@ namespace RTS.Units.Enemy
         {
             if(atkCooldown <= 0 && distance <= baseStats.atkRange +1)
             {
-                aggroUnit.TakeDamage(baseStats.attack);
+                aggroUnit.GetComponentInChildren<UnitStatDisplay>().TakeDamage(baseStats.attack);
                 atkCooldown = baseStats.atkSpeed;
             }
         }
@@ -104,27 +104,8 @@ namespace RTS.Units.Enemy
         private void OnEnable()
         {
         }
-        private void HandleHealthChanged()
-        {
-            Camera cam = Camera.main;
-            unitsStatsDisplay.transform.LookAt(unitsStatsDisplay.transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
-            healthBarAmount.fillAmount = currenHealth / baseStats.health;
-            if (currenHealth <= 0)
-            {
-                Die();
-            }
-        }
-        public void TakeDamage(float damage)
-        {
-            float totalDamage = damage - baseStats.armor;
-            currenHealth -= totalDamage;
-
-        }
-        private void Die()
-        {
-
-           // Destroy(gameObject);
-        }
+    
+    
 
     }
 }
