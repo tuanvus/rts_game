@@ -8,13 +8,8 @@ namespace RTS.Buildings
         public LayerMask pUnitLayer;
         public LayerMask eUnitLayer;
 
-
-
         [SerializeField]
         BuildingBasic barraks;
-
-
-  
 
         public BuildingStatType.Base GetBasicBuildingStats(string type)
         {
@@ -35,5 +30,4 @@ namespace RTS.Buildings
     }
 
 
-}
 }
