@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7202615992723741577}
   - component: {fileID: 404411809882159902}
   - component: {fileID: -6516366151426556905}
+  - component: {fileID: 7563474270068251868}
   m_Layer: 8
   m_Name: HumanUnit
   m_TagString: Untagged
@@ -60,6 +61,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -84,6 +86,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &7202615992723741577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -135,12 +138,27 @@ MonoBehaviour:
     cost: 0
     aggroRange: 0
     atkRange: 0
+    atkSpeed: 0
     attack: 0
     health: 0
     armor: 0
   unitsStatsDisplay: {fileID: 3535209142904105508}
   healthBarAmount: {fileID: 7433701116445222584}
   currenHealth: 100
+--- !u!114 &7563474270068251868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592504760697021135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db19931b6b72d1a43a6a14dc2caf21d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteracting: 0
+  highlight: {fileID: 6858568753382001983}
 --- !u!1 &6858568753382001983
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +205,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

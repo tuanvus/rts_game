@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   name: 
-  buildingPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 6646062593082215589, guid: f4024a0c4f86cdd45b4c510df818b5bb,
+    type: 3}
+  Units:
+    basicUnits:
+    - {fileID: 11400000, guid: d653414c8bf43e54dbbd306ec147a5fb, type: 2}
   baseStats:
-    health: 0
-    armor: 0
+    health: 500
+    armor: 25
     attack: 0

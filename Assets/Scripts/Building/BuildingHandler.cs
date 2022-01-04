@@ -5,8 +5,6 @@ namespace RTS.Buildings
     public class BuildingHandler : Singleton<BuildingHandler>
     {
 
-        public LayerMask pUnitLayer;
-        public LayerMask eUnitLayer;
 
         [SerializeField]
         BuildingBasic barraks;

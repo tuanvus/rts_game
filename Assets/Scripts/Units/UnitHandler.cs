@@ -22,8 +22,8 @@ namespace RTS.Units
 
         private void Start()
         {
-            eUnitLayer = LayerMask.NameToLayer("EnemyUnits");
-            pUnitLayer = LayerMask.NameToLayer("PlayerUnits");
+            // eUnitLayer = LayerMask.NameToLayer("EnemyUnits");
+            // pUnitLayer = LayerMask.NameToLayer("PlayerUnits");
 
         }
 
