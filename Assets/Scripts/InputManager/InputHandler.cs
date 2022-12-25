@@ -9,13 +9,18 @@ namespace RTS.InputManager
     {
         private RaycastHit hit;
         public List<Transform> selectUnits = new List<Transform>();
-        public Transform selectBuilding = null;
-        public LayerMask interactorMask = new LayerMask();
+
         private bool isDragging = false;
         private Vector3 mousePos;
+
+        void Start()
+        {
+
+
+        }
         private void OnGUI()
         {
-            if (isDragging)
+            if(isDragging)
             {
                 Rect rect = MultiSelect.GetScreenRect(mousePos, Input.mousePosition);
                 MultiSelect.DrawScreenRect(rect, new Color(0f, 0f, 0f, 0.25f));
@@ -29,41 +34,43 @@ namespace RTS.InputManager
             if (Input.GetMouseButtonDown(0))
             {
                 mousePos = Input.mousePosition;
+
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit, 100, interactorMask))
+                if (Physics.Raycast(ray, out hit))
                 {
-                    if (AddUnit(hit.transform,Input.GetKey(KeyCode.LeftShift)))
+                    LayerMask layerHit = hit.transform.gameObject.layer;
+                    switch (layerHit.value)
                     {
 
-                    }
-                    else if (AddBuilding(hit.transform))
-                    {
+                        case 8:
+                            SelectUnit(hit.transform,Input.GetKey(KeyCode.LeftShift));
+                            break;
+                        default:
+                            isDragging = true;
+                            DeselectUnits();
+                            break;
 
                     }
                 }
-                else
-                {
-                    isDragging = true;
-                    DeselectUnits();
-                }
+
             }
-            if (Input.GetMouseButtonUp(0))
+            if(Input.GetMouseButtonUp(0))
             {
-                foreach (Transform child in Player.PlayerManager.Instance.playerUnits)
+                foreach(Transform child in Player.PlayerManager.Instance.playerUnits)
                 {
-                    foreach (Transform unit in child)
+                    foreach(Transform unit in child)
                     {
-                        if (isWithinSelectionBounds(unit))
+                        if(isWithinSelectionBounds(unit))
                         {
-                            AddUnit(unit, true);
+                            SelectUnit(unit, true);
                         }
                     }
                 }
                 isDragging = false;
             }
 
-            if (Input.GetMouseButtonDown(1) && HaveSelectedUnits())
+            if(Input.GetMouseButtonDown(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -72,44 +79,49 @@ namespace RTS.InputManager
                     LayerMask layerHit = hit.transform.gameObject.layer;
                     switch (layerHit.value)
                     {
+
                         case 8:
                             break;
                         case 9:
                             break;
                         default:
-                            foreach (Transform unit in selectUnits)
+                            foreach(Transform unit in selectUnits)
                             {
                                 PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
                                 pU.MoveUnit(hit.point);
                             }
                             break;
+
                     }
                 }
-
             }
 
 
         }
 
+        private void SelectUnit(Transform unit, bool canMutiselect = false)
+        {
+            if(!canMutiselect)
+            {
+                DeselectUnits();
+            }
+            selectUnits.Add(unit);
+            unit.Find("Highlight").gameObject.SetActive(true);
+
+        }
 
         private void DeselectUnits()
         {
-            if (selectBuilding)
+            for(int i = 0; i < selectUnits.Count;i++)
             {
-                selectBuilding.gameObject.GetComponent<RTS.Interactables.IBuilding>().OnInteractExit();
-                selectBuilding = null;
-            }
-
-            for (int i = 0; i < selectUnits.Count; i++)
-            {
-                selectUnits[i].gameObject.GetComponent<RTS.Interactables.IUnit>().OnInteractExit();
+                selectUnits[i].Find("Highlight").gameObject.SetActive(false);
             }
             selectUnits.Clear();
 
         }
         private bool isWithinSelectionBounds(Transform tf)
         {
-            if (!isDragging)
+            if(!isDragging)
             {
                 return false;
             }
@@ -122,7 +134,7 @@ namespace RTS.InputManager
 
         private bool HaveSelectedUnits()
         {
-            if (selectUnits.Count > 0)
+            if(selectUnits.Count > 0)
             {
                 return true;
             }
@@ -132,40 +144,5 @@ namespace RTS.InputManager
             }
         }
 
-        private Interactables.IUnit AddUnit(Transform tf, bool canMultiselect = false)
-        {
-            Interactables.IUnit iUnit = tf.GetComponent<RTS.Interactables.IUnit>();
-            if (iUnit)
-            {
-                if (!canMultiselect)
-                {
-                    DeselectUnits();
-                }
-                selectUnits.Add(iUnit.gameObject.transform);
-                iUnit.OnInteractEnter();
-                return iUnit;
-            }
-            else
-            {
-                return null;
-            }
-
-        }
-        private Interactables.IBuilding AddBuilding(Transform tf)
-        {
-            Interactables.IBuilding iBuilding = tf.GetComponent<RTS.Interactables.IBuilding>();
-            if (iBuilding)
-            {
-                DeselectUnits();
-                selectUnits.Add(iBuilding.gameObject.transform);
-                iBuilding.OnInteractEnter();
-                return iBuilding;
-            }
-            else
-            {
-                return null;
-            }
-
-        }
     }
 }

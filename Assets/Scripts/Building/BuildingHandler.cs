@@ -6,8 +6,13 @@ namespace RTS.Buildings
     {
 
 
+
+
         [SerializeField]
         BuildingBasic barraks;
+
+
+  
 
         public BuildingStatType.Base GetBasicBuildingStats(string type)
         {
@@ -28,4 +33,5 @@ namespace RTS.Buildings
     }
 
 
+}
 }
