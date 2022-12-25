@@ -5,8 +5,8 @@ namespace RTS.Buildings
     public class BuildingHandler : Singleton<BuildingHandler>
     {
 
-
-
+        public LayerMask pUnitLayer;
+        public LayerMask eUnitLayer;
 
 
 
@@ -35,5 +35,4 @@ namespace RTS.Buildings
     }
 
 
-}
 }
