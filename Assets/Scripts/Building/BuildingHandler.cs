@@ -8,6 +8,8 @@ namespace RTS.Buildings
 
 
 
+
+
         [SerializeField]
         BuildingBasic barraks;
 

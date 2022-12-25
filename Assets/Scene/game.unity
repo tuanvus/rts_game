@@ -154,6 +154,7 @@ Transform:
   m_Father: {fileID: 1944482188}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &439586561
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +186,8 @@ Transform:
   m_Father: {fileID: 1384950644}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of 653646d (comit)
 --- !u!1 &480866923
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +514,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1384950643
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +546,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of 653646d (comit)
 --- !u!1 &1466386831
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +581,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1001 &1511934711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -644,6 +651,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4024a0c4f86cdd45b4c510df818b5bb, type: 3}
+=======
+>>>>>>> parent of 653646d (comit)
 --- !u!1001 &1548248600
 PrefabInstance:
   m_ObjectHideFlags: 0
