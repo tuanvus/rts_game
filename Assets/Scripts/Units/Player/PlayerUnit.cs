@@ -9,7 +9,7 @@ namespace RTS.Units.Player
     [RequireComponent(typeof(NavMeshAgent))]
     public class PlayerUnit : MonoBehaviour
     {
-        public UnitStatTypes.Base baseStats;
+        public StatInfoUnit baseStats;
 
         public GameObject unitsStatsDisplay;
 

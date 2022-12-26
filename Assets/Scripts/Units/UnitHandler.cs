@@ -27,7 +27,7 @@ namespace RTS.Units
 
         }
 
-        public UnitStatTypes.Base GetBasicUnitStats(string type)
+        public StatInfoUnit GetBasicUnitStats(string type)
         {
             BasicUnit unit;
             switch (type)
@@ -45,7 +45,7 @@ namespace RTS.Units
                     Debug.Log($"Unity :{type} could not be found ");
                     return null;
             }
-            return unit.baseStats;
+            return unit.statUnit;
         }
        
     }

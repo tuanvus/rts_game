@@ -11,9 +11,9 @@ namespace RTS.Player
         public Transform playerBuilding;
         void Start()
         {
-            SetBasicStats(playerUnits);
-            SetBasicStats(enemyUnits);
-            SetBasicStats(playerBuilding);
+            //SetBasicStats(playerUnits);
+            //SetBasicStats(enemyUnits);
+           // SetBasicStats(playerBuilding);
 
 
         }

@@ -9,7 +9,7 @@ namespace RTS.Units.Enemy
     public class EnemyUnits : MonoBehaviour
     {
         
-        public UnitStatTypes.Base baseStats;
+        public StatInfoUnit baseStats;
 
         public GameObject unitsStatsDisplay;
 
@@ -19,7 +19,7 @@ namespace RTS.Units.Enemy
 
         private NavMeshAgent navAgent;
 
-        private Collider[] rangColliders;
+        [SerializeField] Collider[] rangColliders;
 
         private Transform aggroTaget;
 
@@ -57,7 +57,7 @@ namespace RTS.Units.Enemy
         private void CheckForEnemyTarget()
         {
             rangColliders =
-                Physics.OverlapSphere(transform.position, baseStats.aggroRange);
+                Physics.OverlapSphere(transform.position, baseStats.atkRange);
             Debug.Log($"count {rangColliders.Length}");
 
             for (int i = 0; i < rangColliders.Length; i++)
@@ -79,7 +79,7 @@ namespace RTS.Units.Enemy
         {
             if(atkCooldown <= 0 && distance <= baseStats.atkRange +1)
             {
-                aggroUnit.GetComponentInChildren<UnitStatDisplay>().TakeDamage(baseStats.attack);
+                aggroUnit.GetComponentInChildren<UnitStatDisplay>().TakeDamage(baseStats.damage);
                 atkCooldown = baseStats.atkSpeed;
             }
         }
@@ -94,7 +94,7 @@ namespace RTS.Units.Enemy
             {
                 distance = Vector3.Distance(aggroTaget.position, transform.position);
                 navAgent.stoppingDistance = (baseStats.atkRange + 1);
-                if(distance <= baseStats.aggroRange)
+                if(distance <= baseStats.atkRange)
                 {
                     navAgent.SetDestination(aggroTaget.position);
                 }

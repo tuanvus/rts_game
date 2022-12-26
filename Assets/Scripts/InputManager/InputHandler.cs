@@ -87,7 +87,7 @@ namespace RTS.InputManager
                         default:
                             foreach(Transform unit in selectUnits)
                             {
-                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                UnitBase pU = unit.gameObject.GetComponent<UnitBase>();
                                 pU.MoveUnit(hit.point);
                             }
                             break;
@@ -106,7 +106,7 @@ namespace RTS.InputManager
                 DeselectUnits();
             }
             selectUnits.Add(unit);
-            unit.Find("Highlight").gameObject.SetActive(true);
+            //unit.Find("Highlight").gameObject.SetActive(true);
 
         }
 
@@ -114,7 +114,7 @@ namespace RTS.InputManager
         {
             for(int i = 0; i < selectUnits.Count;i++)
             {
-                selectUnits[i].Find("Highlight").gameObject.SetActive(false);
+                //selectUnits[i].Find("Highlight").gameObject.SetActive(false);
             }
             selectUnits.Clear();
 
