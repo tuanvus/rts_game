@@ -3,72 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-
+using Sirenix.OdinInspector;
 namespace RTS
 {
-    public enum TypeUnit
-    {
-        Archer,//xa thu
-        Commander,//Chỉ huy
-        Crossbowman,//xa thu nỏ
-        Halberdier, //giáo
-        Knight,//hiệp sĩ
-        Mage,//pháp sư
-
-        HeavyCavalry, //kị binh hạng nặng
-        HeavyInfantry,//bộ binh hạng nặng
-        HeavySwordman,//kiếm sĩ hạng nặng
-
-        HighPriest,//thầy tế thượng phẩm
-
-        LightCavalry,//kị binh hạng nhẹ
-        LightInfantry,// bộ binh hạng nhẹ
-
-
-        King,//vua
-        MountedKing,// vua cưỡi ngựa
-        MountedKnight,//kị sĩ cưỡi ngựa
-        MountedMage,// phù thủy cưỡi ngựa
-        MountedPaladin,//vua cưỡi ngựa nâng cấp
-        MountedPriest,//thầy tế cưỡi ngựa
-        MountedScout,//cung thủ cưỡi ngựa
-        Paladin,//vua nâng cấp
-        Peasant,//nông dân 
-        Priest,//thầy tế 
-        Scout,//xa thu nâng cấp 
-        Settler,//xe chở hàng
-        Spearman,// bộ binh giáo
-        Swordman // bộ binh
-    }
-    public enum StateUnit
-    {
-        Idle,
-        Move,
-        Attack,
-        Dead,
-        Patroll,
-        Hit,
-
-
-    }
-
     public class UnitBase : MonoBehaviour
     {
-        [Header("base")]
-        [SerializeField] protected AnimatorHandle animatorHandle;
         [SerializeField] protected TypeUnit typeUnit;
-        public StatInfoUnit statInfoUnit;
-        public StateUnit state;
-
-        public GameObject unitsStatsDisplay;
-
-        public Image healthBarAmount;
-        public NavMeshAgent navAgent;
-        public UnitBase target;
-        public bool canAtk = false;
-        public bool isAlive = true;
-        public float distance;
-        public LayerMask layerTarget;
+        [FoldoutGroup("BaseUnit")][SerializeField] protected AnimatorHandle animatorHandle;
+        [FoldoutGroup("BaseUnit")] public StatInfoUnit statInfoUnit;
+        [FoldoutGroup("BaseUnit")] public StateUnit state;
+        [FoldoutGroup("BaseUnit")] public GameObject unitsStatsDisplay;
+        [FoldoutGroup("BaseUnit")] public Image healthBarAmount;
+        [FoldoutGroup("BaseUnit")] public NavMeshAgent navAgent;
+        [FoldoutGroup("BaseUnit")] public UnitBase targetUnit;
+        [FoldoutGroup("BaseUnit")] public bool canAtk = false;
+        [FoldoutGroup("BaseUnit")] public bool isAlive = true;
+        [FoldoutGroup("BaseUnit")] public float distance;
+        [FoldoutGroup("BaseUnit")] public LayerMask layerTarget;
         void Start()
         {
 
@@ -78,7 +29,7 @@ namespace RTS
             animatorHandle.Initialized();
             canAtk = false;
             unitsStatsDisplay.SetActive(false);
-            target = null;
+            targetUnit = null;
             isAlive = true;
             state = StateUnit.Idle;
         }
@@ -97,23 +48,23 @@ namespace RTS
                 if (rangColliders[i].gameObject.layer == layerTarget)
 
                 {
-                    target = rangColliders[i].GetComponent<UnitBase>();
+                    targetUnit = rangColliders[i].GetComponent<UnitBase>();
                     //aggroUnit = aggroTaget.gameObject.GetComponent<Player.PlayerUnit>();
                     Debug.Log("target");
                     break;
                 }
             }
         }
-        protected void MoveToTarget()
+        protected void MoveToTarget(Vector3 targetPos)
         {
-            distance = Vector3.Distance(target.transform.position, transform.position);
+            distance = Vector3.Distance(targetPos, transform.position);
             navAgent.stoppingDistance = (statInfoUnit.atkRange + 1);
         }
         protected void AttackUnit()
         {
             if (canAtk && distance <= statInfoUnit.atkRange)
             {
-                target.TakeDamage(statInfoUnit.damage);
+                targetUnit.TakeDamage(statInfoUnit.damage);
             }
         }
         public void MoveUnit(Vector3 _destination)
