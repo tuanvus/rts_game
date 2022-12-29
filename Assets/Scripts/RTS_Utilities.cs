@@ -58,7 +58,7 @@
         Food,
         Tree,
         Gold,
-        rock
+        Stone
     }
 }
 

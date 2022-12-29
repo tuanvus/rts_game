@@ -10,11 +10,16 @@ namespace RTS
         public static string Walk = "Walk";
         public static string Attack = "Attack";
         public static string Die = "Die";
+        public static string Work1 = "Work1";
+        public static string Speed = "Speed";
+        public static string Idle_State = "Idle_State";
+        public static string Run_State = "Run_State";
+
 
     }
     public class AnimatorHandle : MonoBehaviour
     {
-        public Animator animator;
+        [SerializeField] Animator animator;
         private void Awake()
         {
             animator = GetComponent<Animator>();
@@ -22,12 +27,20 @@ namespace RTS
 
         public void Initialized()
         {
-            animator.Rebind();
             animator.Play(StateUnitAnimation.Idle);
         }
-        void Start()
+        public void PlayAnimation(string nameAnimation)
         {
+            animator.Play(nameAnimation);
 
+        }
+        public void PlayCrossFadeAni(string nameAnimation, float normalizedTransitionDuration, int layer, float normalizedTimeOffset)
+        {
+            animator.CrossFade(nameAnimation,normalizedTimeOffset,layer,normalizedTransitionDuration); //)
+        }
+        public void SetFloatAnimation(string nameAnimation, float value)
+        {
+            animator.SetFloat(nameAnimation, value);
         }
 
 

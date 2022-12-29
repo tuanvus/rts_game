@@ -7,14 +7,25 @@ namespace RTS.Player
     public class PlayerManager : Singleton<PlayerManager>
     {
         public Transform playerUnits;
-        public Transform enemyUnits;
         public Transform playerBuilding;
+        public List<PeasantUnit> List_Peasants;
+        public ResourceManager resourceManager;
         void Start()
         {
             //SetBasicStats(playerUnits);
             //SetBasicStats(enemyUnits);
-           // SetBasicStats(playerBuilding);
+            // SetBasicStats(playerBuilding);
 
+
+        }
+        public void Initialize(ResourceManager rm)
+        {
+            resourceManager = rm;
+
+            foreach (var peasantUnit in List_Peasants)
+            {
+                peasantUnit.OnUpdateResource += resourceManager.OnUpdateResource;
+            }
 
         }
 
@@ -25,7 +36,6 @@ namespace RTS.Player
         public void SetBasicStats(Transform type)
         {
             Transform pUnits = PlayerManager.Instance.playerUnits;
-            Transform eUnits = PlayerManager.Instance.enemyUnits;
 
             foreach (Transform child in type)
             {
@@ -38,14 +48,8 @@ namespace RTS.Player
                         Units.Player.PlayerUnit pU = tf.GetComponent<Units.Player.PlayerUnit>();
                         pU.baseStats = Units.UnitHandler.Instance.GetBasicUnitStats(name);
                     }
-                    else if (type == enemyUnits)
-                    {
-                        Units.Enemy.EnemyUnits eU = tf.GetComponent<Units.Enemy.EnemyUnits>();
-                        eU.baseStats = Units.UnitHandler.Instance.GetBasicUnitStats(name);
-
-                    }
                     //set unit stats in each units
-                    else if(type == playerBuilding)
+                    else if (type == playerBuilding)
                     {
                         Buildings.PlayerBuilding pB = tf.GetComponent<Buildings.PlayerBuilding>();
                         pB.baseStats = Buildings.BuildingHandler.Instance.GetBasicBuildingStats(name);

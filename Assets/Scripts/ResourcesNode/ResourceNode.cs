@@ -5,7 +5,12 @@ namespace RTS.Resource
 {
     public class ResourceNode : MonoBehaviour
     {
-        // Start is called before the first frame update
+        public Event onHit{get; set; }
+        public ResourcesType resourcesType;
+        public int amount;
+        public float distanceTargetStop;
+        [SerializeField] float spawnTime;
+
         void Start()
         {
 

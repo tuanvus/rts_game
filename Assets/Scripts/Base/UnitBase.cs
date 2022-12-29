@@ -9,6 +9,9 @@ namespace RTS
     public class UnitBase : MonoBehaviour
     {
         [SerializeField] protected TypeUnit typeUnit;
+        [SerializeField] protected int LvUnit;
+        [SerializeField] protected int speed;
+
         [FoldoutGroup("BaseUnit")][SerializeField] protected AnimatorHandle animatorHandle;
         [FoldoutGroup("BaseUnit")] public StatInfoUnit statInfoUnit;
         [FoldoutGroup("BaseUnit")] public StateUnit state;
@@ -22,7 +25,7 @@ namespace RTS
         [FoldoutGroup("BaseUnit")] public LayerMask layerTarget;
         void Start()
         {
-
+            Initialized();
         }
         public virtual void Initialized()
         {
@@ -32,6 +35,7 @@ namespace RTS
             targetUnit = null;
             isAlive = true;
             state = StateUnit.Idle;
+            navAgent.speed = speed;
         }
         void Update()
         {
