@@ -56,7 +56,7 @@
     public enum ResourcesType
     {
         Food,
-        Tree,
+        Wood,
         Gold,
         Stone
     }

@@ -23,7 +23,7 @@ namespace RTS
 
         }
 
-        public ResourceNode GetTreeNearest(Transform unit)
+        public ResourceNode GetWoodNearest(Transform unit)
         {
             for (int i = 0; i < nodeTree.Count; i++)
             {

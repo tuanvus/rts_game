@@ -33,7 +33,7 @@ namespace RTS
                     Stone += value;
                     UI_Manager.Instance.ui_Gameplay.SetTextStone(Stone);
                     break;
-                case ResourcesType.Tree:
+                case ResourcesType.Wood:
                     Tree += value;
                     UI_Manager.Instance.ui_Gameplay.SetTextTree(Tree);
                     break;
@@ -45,7 +45,7 @@ namespace RTS
             }
 
         }
-        public void AddTree(int tree)
+        public void AddWood(int tree)
         {
             Tree += tree;
             UI_Manager.Instance.ui_Gameplay.SetTextTree(Tree);
