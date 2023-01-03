@@ -31,7 +31,7 @@ namespace RTS.Player
 
         void Update()
         {
-            InputHandler.Instance.HandleUnitMovement();
+          //  InputHandler.Instance.HandleUnitMovement();
         }
         public void SetBasicStats(Transform type)
         {

@@ -11,9 +11,18 @@ namespace RTS.InputManager
         private RaycastHit hit;
         public List<Transform> selectUnits = new List<Transform>();
 
+
         private bool isDragging = false;
         private Vector3 mousePos;
 
+        [Header("Building")]
+        //building
+        public GameObject prefabToPlace;
+
+        public LayerMask obstacleLayerMask;
+        public List<Transform> selectBuilding = new List<Transform>();
+        bool hasObstacle;
+        Vector3 prefabPosition;
         void Start()
         {
 
@@ -21,7 +30,7 @@ namespace RTS.InputManager
         }
         private void OnGUI()
         {
-            if(isDragging)
+            if (isDragging)
             {
                 Rect rect = MultiSelect.GetScreenRect(mousePos, Input.mousePosition);
                 MultiSelect.DrawScreenRect(rect, new Color(0f, 0f, 0f, 0.25f));
@@ -30,7 +39,37 @@ namespace RTS.InputManager
 
             }
         }
-        public void HandleUnitMovement()
+        private void Update()
+        {
+            SelectBuilding();
+            //SelectUnit();
+
+        }
+        public void SelectBuilding()
+        {
+            //if (Input.GetMouseButtonDown(0))
+            //{
+                // Raycast from the mouse position to find the position on the ground where the prefab should be placed
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    // Calculate the position of the prefab
+                    prefabPosition = hit.point;
+
+                    // Check if the prefab intersects with any other colliders in the scene
+                    hasObstacle = Physics.CheckBox(prefabPosition, prefabToPlace.GetComponent<Collider>().bounds.size, Quaternion.identity, obstacleLayerMask);
+
+                    // Only place the prefab if it does not intersect with any other colliders
+                    //if (!hasObstacle)
+                    //{
+                    //    // Instantiate the prefab at the calculated position
+                    //    GameObject prefabInstance = Instantiate(prefabToPlace, prefabPosition, Quaternion.identity);
+                    //}
+                }
+          //  }
+        }
+        public void SelectUnit()
         {
             if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
             {
@@ -45,7 +84,7 @@ namespace RTS.InputManager
                     {
 
                         case 8:
-                            SelectUnit(hit.transform,Input.GetKey(KeyCode.LeftShift));
+                            SelectUnit(hit.transform, Input.GetKey(KeyCode.LeftShift));
                             break;
                         default:
                             isDragging = true;
@@ -56,13 +95,13 @@ namespace RTS.InputManager
                 }
 
             }
-            if(Input.GetMouseButtonUp(0) && EventSystem.current.IsPointerOverGameObject() == false)
+            if (Input.GetMouseButtonUp(0) && EventSystem.current.IsPointerOverGameObject() == false)
             {
-                foreach(Transform child in Player.PlayerManager.Instance.playerUnits)
+                foreach (Transform child in Player.PlayerManager.Instance.playerUnits)
                 {
-                    foreach(Transform unit in child)
+                    foreach (Transform unit in child)
                     {
-                        if(isWithinSelectionBounds(unit))
+                        if (isWithinSelectionBounds(unit))
                         {
                             SelectUnit(unit, true);
                         }
@@ -71,7 +110,7 @@ namespace RTS.InputManager
                 isDragging = false;
             }
 
-            if(Input.GetMouseButtonDown(1) && EventSystem.current.IsPointerOverGameObject() == false)
+            if (Input.GetMouseButtonDown(1) && EventSystem.current.IsPointerOverGameObject() == false)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -86,7 +125,7 @@ namespace RTS.InputManager
                         case 9:
                             break;
                         default:
-                            foreach(Transform unit in selectUnits)
+                            foreach (Transform unit in selectUnits)
                             {
                                 UnitBase pU = unit.gameObject.GetComponent<UnitBase>();
                                 pU.SetTarget(hit.transform);
@@ -102,7 +141,7 @@ namespace RTS.InputManager
 
         private void SelectUnit(Transform unit, bool canMutiselect = false)
         {
-            if(!canMutiselect)
+            if (!canMutiselect)
             {
                 DeselectUnits();
             }
@@ -113,7 +152,7 @@ namespace RTS.InputManager
 
         private void DeselectUnits()
         {
-            for(int i = 0; i < selectUnits.Count;i++)
+            for (int i = 0; i < selectUnits.Count; i++)
             {
                 //selectUnits[i].Find("Highlight").gameObject.SetActive(false);
             }
@@ -122,7 +161,7 @@ namespace RTS.InputManager
         }
         private bool isWithinSelectionBounds(Transform tf)
         {
-            if(!isDragging)
+            if (!isDragging)
             {
                 return false;
             }
@@ -135,7 +174,7 @@ namespace RTS.InputManager
 
         private bool HaveSelectedUnits()
         {
-            if(selectUnits.Count > 0)
+            if (selectUnits.Count > 0)
             {
                 return true;
             }
@@ -143,6 +182,12 @@ namespace RTS.InputManager
             {
                 return false;
             }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireCube(prefabPosition, prefabToPlace.GetComponent<Collider>().bounds.size / 2);
+
         }
 
     }
