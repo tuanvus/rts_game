@@ -186,7 +186,8 @@ namespace RTS.InputManager
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.DrawWireCube(prefabPosition, prefabToPlace.GetComponent<Collider>().bounds.size / 2);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(prefabPosition, prefabToPlace.GetComponent<Collider>().bounds.size);
 
         }
 

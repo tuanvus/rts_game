@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace RTS
 {
-    public class ArcheryBuildingSO : ScriptableObject
+    public class BuildingSO : ScriptableObject
     {
         public BuildingCost buildingCost;
         public float timeBuildingHouse;

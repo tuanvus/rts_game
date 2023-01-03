@@ -8,7 +8,7 @@ namespace RTS
 {
 
 
-  
+
     public enum StateBuiding
     {
         Construction,
@@ -20,36 +20,49 @@ namespace RTS
     }
     public class BuildingBase : MonoBehaviour
     {
+        protected string path = "DataSO/Building/";
         public StateBuiding stateBuiding;
-       [FoldoutGroup("BuildingBase")] public Transform root;
-        [FoldoutGroup("BuildingBase")] public Transform flag;
-
         [FoldoutGroup("BuildingBase")] public int level;
         [FoldoutGroup("BuildingBase")] public GameObject unitsStatsDisplay;
         [FoldoutGroup("BuildingBase")] public Image healthBarAmount;
-        [FoldoutGroup("BuildingBase")] public float distanceTargetStop;
-        [FoldoutGroup("BuildingBase")] public List<GameObject> houseBuildingAction;
-        [FoldoutGroup("BuildingBase")] public int HPMax;
-        [FoldoutGroup("BuildingBase")] public int HP;
-        [FoldoutGroup("BuildingBase")] public float timeSpawnUnit;
-        [FoldoutGroup("BuildingBase")] public float timeConstructionMax;
-        [FoldoutGroup("BuildingBase")] public float preTimeConstruction;
         [FoldoutGroup("BuildingBase")] public BuildingCost buildingCost;
 
+        [ShowIf("stateBuiding", StateBuiding.Construction)][FoldoutGroup("BuildingBase")] public List<GameObject> houseBuildingAction;
+        [ShowIf("stateBuiding", StateBuiding.Construction)][FoldoutGroup("BuildingBase")] public float timeConstructionMax;
+        [ShowIf("stateBuiding", StateBuiding.Construction)][FoldoutGroup("BuildingBase")] public float preTimeConstruction;
 
-
-
-
+        [ShowIf("stateBuiding", StateBuiding.Active)][FoldoutGroup("BuildingBase")] public Transform root;
+        [ShowIf("stateBuiding", StateBuiding.Active)][FoldoutGroup("BuildingBase")] public Transform flag;
+        [ShowIf("stateBuiding", StateBuiding.Active)][FoldoutGroup("BuildingBase")] public float distanceTargetStop;
+        [ShowIf("stateBuiding", StateBuiding.Active)][FoldoutGroup("BuildingBase")] public int HPMax;
+        [ShowIf("stateBuiding", StateBuiding.Active)][FoldoutGroup("BuildingBase")] public int HP;
+        [ShowIf("stateBuiding", StateBuiding.Active)][FoldoutGroup("BuildingBase")] public float timeSpawnUnit;
 
         protected void Reset()
         {
             Debug.Log("Reset Data");
-            LoadComponents();
             ResetValue();
+
+            LoadComponents();
+            SetDataSO();
         }
 
         protected virtual void ResetValue()
         {
+            path = "DataSO/Building/" + this.name + "SO";
+            Debug.Log(path);
+        }
+        void SetDataSO()
+        {
+            Debug.Log("LoadComponents = " + path);
+            Debug.Log("L =" + Resources.Load<BuildingSO>(path).name);
+           var buildingSO = LoadDataSO() as BuildingSO;
+            buildingCost = new BuildingCost(buildingSO.buildingCost.woodCost, buildingSO.buildingCost.foodCost,
+                buildingSO.buildingCost.goldCost, buildingSO.buildingCost.stoneCost);
+        }
+        protected virtual ScriptableObject LoadDataSO()
+        {
+            return Resources.Load<ScriptableObject>(path) as ScriptableObject;
         }
         protected virtual void LoadComponents()
         {
@@ -63,28 +76,76 @@ namespace RTS
                 houseBuildingAction.Add(item.gameObject);
             }
 
-          
 
+
+        }
+        protected virtual void LoadResourcesSO()
+        {
+
+            // archeryBuildingSO = Resources.Load<ArcheryBuildingSO>(path);
+            // buildingCost = new BuildingCost(archeryBuildingSO.buildingCost.woodCost, archeryBuildingSO.buildingCost.foodCost,
+            //     archeryBuildingSO.buildingCost.goldCost, archeryBuildingSO.buildingCost.stoneCost);
         }
 
 
-
-        void Start()
+        protected virtual void Start()
         {
-
+            Initialized();
         }
 
         void Update()
         {
 
         }
-
-        public void SpawnUnits()
+        protected virtual void Initialized()
         {
+            stateBuiding = StateBuiding.Construction;
+            HP = HPMax;
+            preTimeConstruction = 0;
+            timeSpawnUnit = 0;
+            if (unitsStatsDisplay == null)
+            {
+            }
+            else
+            {
+                unitsStatsDisplay.SetActive(true);
+            }
+            StartCoroutine(ConstructionHouse());
+        }
 
-        }    
+        IEnumerator ConstructionHouse()
+        {
+            while (preTimeConstruction < timeConstructionMax)
+            {
+                preTimeConstruction += Time.deltaTime;
+                Debug.Log("ConstructionHouse === " + GetPercentConstruction());
+                if (GetPercentConstruction() >= 1 && GetPercentConstruction() < 60)
+                {
+                    houseBuildingAction[0].SetActive(true);
+                }
+                else if (GetPercentConstruction() >= 60 && GetPercentConstruction() < 90)
+                {
+                    houseBuildingAction[0].SetActive(false);
+                    houseBuildingAction[1].SetActive(true);
+                }
+                else if (GetPercentConstruction() >= 90 && GetPercentConstruction() < 100)
+                {
+                    houseBuildingAction[0].SetActive(false);
+                    houseBuildingAction[1].SetActive(false);
+                    houseBuildingAction[2].SetActive(true);
+                }
 
 
+                yield return null;
+            }
+            stateBuiding = StateBuiding.Active;
+            unitsStatsDisplay.SetActive(false);
+        }
+
+        int GetPercentConstruction()
+        {
+            return (int)(preTimeConstruction / timeConstructionMax * 100);
+        }
 
     }
 }
