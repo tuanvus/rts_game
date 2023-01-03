@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using RTS.SO;
+
 namespace RTS
 {
-    public class UnitBase : MonoBehaviour
+    public abstract class UnitBase : MonoBehaviour
     {
         [SerializeField] protected TypeUnit typeUnit;
         [SerializeField] protected int LvUnit;
@@ -23,6 +25,36 @@ namespace RTS
         [FoldoutGroup("BaseUnit")] public bool isAlive = true;
         [FoldoutGroup("BaseUnit")] public float distance;
         [FoldoutGroup("BaseUnit")] public LayerMask layerTarget;
+
+        // protected void Reset()
+        // {
+        //     Debug.Log("Reset");
+        //     LoadComponents();
+        // }
+        protected void Reset()
+        {
+            Debug.Log("Reset Data");
+            LoadComponents();
+            ResetValue();
+        }
+        protected virtual void ResetValue()
+        {
+            LvUnit = 1;
+            speed = 5;
+            state = StateUnit.Idle;
+            canAtk = false;
+            isAlive = true;
+        }
+        protected virtual void LoadComponents()
+        {
+            animatorHandle = transform.GetComponentInChildren<AnimatorHandle>();
+            string path = "DataSO/Peasant";
+            statInfoUnit.SetValue(Resources.Load<BasicUnit>(path));
+            navAgent = transform.GetComponent<NavMeshAgent>();
+            unitsStatsDisplay = transform.Find("UnitsStatsDisplay").gameObject;
+            healthBarAmount = unitsStatsDisplay.transform.Find("HealthBar").GetComponent<Image>();
+        }
+
         void Start()
         {
             Initialized();
@@ -59,11 +91,7 @@ namespace RTS
                 }
             }
         }
-        protected void MoveToTarget(Vector3 targetPos)
-        {
-            distance = Vector3.Distance(targetPos, transform.position);
-            navAgent.stoppingDistance = (statInfoUnit.atkRange + 1);
-        }
+
         protected void AttackUnit()
         {
             if (canAtk && distance <= statInfoUnit.atkRange)
@@ -71,9 +99,11 @@ namespace RTS
                 targetUnit.TakeDamage(statInfoUnit.damage);
             }
         }
-        public void MoveUnit(Vector3 _destination)
+        protected virtual void MoveUnit(Transform _destination, float _stoppingDistance = 0)
         {
-            navAgent.SetDestination(_destination);
+            navAgent.SetDestination(_destination.position);
+            navAgent.stoppingDistance = _stoppingDistance;
+            state = StateUnit.Move;
         }
         public int CalculateDamage(int damage, int armor)
         {
@@ -95,6 +125,21 @@ namespace RTS
             Gizmos.color = Color.black;
             Gizmos.DrawWireSphere(transform.position, statInfoUnit.atkRange);
         }
+
+        public virtual void SetTarget<T>(T target) where T : Component
+        {
+            if (target != null)
+            {
+                Debug.Log("target is not null");
+                GetTypeTarget(target);
+            }
+            else
+            {
+                Debug.LogError("target is null");
+            }
+        }
+        protected abstract void GetTypeTarget<T>(T target);
+
     }
 
     [System.Serializable]
@@ -106,13 +151,28 @@ namespace RTS
         //public int rangeAtk;
         //public int damageAtk;
         //public int armor;
+        public StatInfoUnit()
+        {
+
+        }
+        public void SetValue(BasicUnit basicUnit)
+        {
+            cost = basicUnit.cost;
+            atkRange = basicUnit.atkRange;
+            atkSpeed = basicUnit.atkSpeed;
+            damage = basicUnit.damage;
+            health = basicUnit.health;
+            healthMax = basicUnit.healthMax;
+            armor = basicUnit.armor;
+            critRatio = basicUnit.critRatio;
+        }
+
         public float cost, atkRange, atkSpeed;
         public int armor;
         public int damage;
         public int health;
         public int healthMax;
         public int critRatio;
-
 
 
     }

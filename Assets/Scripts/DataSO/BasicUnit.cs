@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace RTS.Units
+namespace RTS.SO
 {
 
-
+    [CreateAssetMenu(fileName = "New Unit", menuName = "Unit/Basic Unit", order = 1)]
     public class BasicUnit : ScriptableObject
     {
         public enum unitType
@@ -14,7 +14,7 @@ namespace RTS.Units
             Healer
         }
         [Space(15)]
-        [Header (" Unit Setting")]
+        [Header(" Unit Setting")]
         public bool isPlayerUnit;
         public unitType type;
         public new string unitName;
@@ -23,7 +23,12 @@ namespace RTS.Units
 
         [Space(15)]
         [Header("Unit Base Stats")]
-        public StatInfoUnit statUnit;
+        public float cost, atkRange, atkSpeed;
+        public int armor;
+        public int damage;
+        public int health;
+        public int healthMax;
+        public int critRatio;
 
     }
 }

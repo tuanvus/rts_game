@@ -42,6 +42,7 @@ namespace RTS
         }
         public void SetFloatAnimation(string nameAnimation, float value)
         {
+            Debug.Log("nameAnimation = "+nameAnimation +" value = "+value);
             animator.SetFloat(nameAnimation, value);
         }
         public void SetBoolAnimation(string nameAnimation, bool value)

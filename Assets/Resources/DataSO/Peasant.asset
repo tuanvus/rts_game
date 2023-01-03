@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0cae4969a9160944a75bb77e8f230cf, type: 3}
-  m_Name: BasicUnit
+  m_Name: Peasant
   m_EditorClassIdentifier: 
   isPlayerUnit: 0
   type: 0
   unitName: 
   humanPrefab: {fileID: 0}
   infectedPrefab: {fileID: 0}
-  baseStats:
-    cost: 0
-    aggroRange: 0
-    atkRange: 0
-    atkSpeed: 0
-    attack: 0
-    health: 0
-    armor: 0
+  cost: 0
+  atkRange: 0
+  atkSpeed: 1
+  armor: 23
+  damage: 4
+  health: 5
+  healthMax: 6
+  critRatio: 7

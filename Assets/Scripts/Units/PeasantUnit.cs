@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,16 +13,23 @@ namespace RTS
     {
         public Action<ResourcesType, int> OnUpdateResource { get; set; }
         [Header("PeasantUnit")]
-        public ResourcesType testRs;
-        public float timeWorkingResource;
-        public ResourceNode nodeResources;
-        public BuildingBase nodeStorage;
-        public int capacityResources = 0;
-        public int capacityResourcesMax = 10;
+        [FoldoutGroup("PeasantUnit")][SerializeField] ResourcesType testRs;
+        [FoldoutGroup("PeasantUnit")][SerializeField] ResourceNode nodeResources;
+        [FoldoutGroup("PeasantUnit")][SerializeField] BuildingBase nodeStorage;
 
-        public List<Transform> utensilResources;//dụng cụ của nông dân
-        public float rangeDistance;
-        public bool canWorking = true;
+        [FoldoutGroup("PeasantUnit")][SerializeField] public ResourceNode TargetNodeResource { get { return nodeResources; } set { nodeResources = value; } }
+        [FoldoutGroup("PeasantUnit")][SerializeField] public Transform targetPosition;
+
+
+        [FoldoutGroup("PeasantUnit")][SerializeField] List<Transform> utensilResources;//dụng cụ của nông dân
+
+        [FoldoutGroup("PeasantUnit")][SerializeField] int capacityResources = 0;
+        [FoldoutGroup("PeasantUnit")][SerializeField] int capacityResourcesMax = 10;
+
+        [FoldoutGroup("PeasantUnit")][SerializeField] float timeWorkingResource;
+        [FoldoutGroup("PeasantUnit")][SerializeField] float rangeDistance;
+
+        [FoldoutGroup("PeasantUnit")][SerializeField] bool canWorking = true;
 
 
         // Start is called before the first frame update
@@ -29,6 +37,15 @@ namespace RTS
         // {
         //     Initialize();
         // }
+        // private void Reset()
+        // {
+        //     Debug.Log("vao");
+        // }
+        protected override void ResetValue()
+        {
+            base.ResetValue();
+            timeWorkingResource = 2;
+        }
         public override void Initialized()
         {
             base.Initialized();
@@ -42,7 +59,7 @@ namespace RTS
                     break;
                 case ResourcesType.Gold:
                     nodeResources = ResourceNodeManager.Instance.GetGoldNearest(transform);
-                    Debug.Log("vao ="+ nodeResources.name);
+                    Debug.Log("vao =" + nodeResources.name);
                     break;
                 case ResourcesType.Stone:
                     nodeResources = ResourceNodeManager.Instance.GetStoneNearest(transform);
@@ -51,6 +68,10 @@ namespace RTS
 
             nodeStorage = BuildingManager.Instance.listHoused[0];
             capacityResources = 0;
+            foreach (var item in utensilResources)
+            {
+                item.gameObject.SetActive(false);
+            }
         }
 
 
@@ -72,8 +93,12 @@ namespace RTS
             {
                 state = StateUnit.FindNodeResources;
             }
+
+
+
             StateHandle();
         }
+
         void StateHandle()
         {
             //state = stateUnit;
@@ -82,6 +107,7 @@ namespace RTS
                 case StateUnit.Idle:
                     break;
                 case StateUnit.Move:
+                    //CanReachPosition();
                     break;
                 case StateUnit.Attack:
                     break;
@@ -91,11 +117,13 @@ namespace RTS
                     break;
                 case StateUnit.MovingToResour:
                     MovingToResources();
+                    Debug.Log("MovingToResources");
                     break;
                 case StateUnit.GatheringResources:
                     GatheringResources();
                     break;
                 case StateUnit.MovingToStorage:
+                    Debug.Log("MovingToStorage");
                     MovingToStorage();
                     break;
                 case StateUnit.FindNodeResources:
@@ -109,14 +137,11 @@ namespace RTS
         {
             animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 1);
             animatorHandle.SetFloatAnimation(StateUnitAnimation.Run_State, 0);
-
             navAgent.SetDestination(nodeResources.transform.position);
             rangeDistance = nodeResources.distanceTargetStop;
             navAgent.stoppingDistance = rangeDistance;
             if (CanReachPosition(nodeResources.transform.position))
             {
-
-                Debug.Log("completed StateUnit.MovingToResour");
                 state = StateUnit.GatheringResources;
             }
 
@@ -131,10 +156,10 @@ namespace RTS
             navAgent.stoppingDistance = rangeDistance;
             if (CanReachPosition(nodeStorage.transform.position))
             {
-                Debug.Log("completed StateUnit.MovingToStorage");
                 OnUpdateResource?.Invoke(nodeResources.resourcesType, capacityResources);
                 capacityResources = 0;
                 state = StateUnit.MovingToResour;
+                GetUtensilResources();
 
             }
         }
@@ -144,6 +169,7 @@ namespace RTS
         }
         void GatheringResources()
         {
+            Debug.Log("GatheringResources =" + nodeResources.resourcesType);
             switch (nodeResources.resourcesType)
             {
                 case ResourcesType.Wood:
@@ -157,13 +183,14 @@ namespace RTS
                     break;
                 case ResourcesType.Stone:
                     break;
+                default:
+                    Debug.Log("GatheringResources nullll=" + nodeResources.resourcesType);
 
+                    break;
 
             }
 
         }
-
-
         void GatheringResourcesWood()
         {
             animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 0);
@@ -175,7 +202,7 @@ namespace RTS
                 {
                     animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Wood, false);
                     state = StateUnit.MovingToStorage;
-                    GetUtensilResources(nodeResources.resourcesType,true);
+                    GetUtensilResources(nodeResources.resourcesType, true);
 
                 }
                 else
@@ -199,12 +226,13 @@ namespace RTS
             animatorHandle.SetFloatAnimation(StateUnitAnimation.Idle_State, 1);
             if (canWorking)
             {
-
+                canWorking = false;
+                this.Wait(timeWorkingResource, () => canWorking = true);
                 if (capacityResources >= capacityResourcesMax)
                 {
                     animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Food, false);
                     state = StateUnit.MovingToStorage;
-                    GetUtensilResources(nodeResources.resourcesType,true);
+                    GetUtensilResources(nodeResources.resourcesType, true);
 
                 }
                 else
@@ -236,7 +264,6 @@ namespace RTS
                 else
                 {
                     GetUtensilResources(nodeResources.resourcesType);
-                    Debug.Log("working");
                     canWorking = false;
                     this.Wait(timeWorkingResource, () => canWorking = true);
                     animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Gold, true);
@@ -245,25 +272,35 @@ namespace RTS
 
             }
         }
-        void GetUtensilResources(ResourcesType resourcesType, bool isStoraged = false)
+        void GetUtensilResources(ResourcesType resourcesType = ResourcesType.None, bool isStoraged = false)
         {
+            foreach (var item in utensilResources)
+            {
+                item.gameObject.SetActive(false);
+            }
             switch (resourcesType)
             {
+                case ResourcesType.None:
+                    foreach (var item in utensilResources)
+                    {
+                        item.gameObject.SetActive(false);
+                    }
+                    break;
                 case ResourcesType.Wood:
                     utensilResources[isStoraged != true ? 0 : 1].gameObject.SetActive(false);
-                     utensilResources[isStoraged == true ? 1 : 0].gameObject.SetActive(true);
-                     break;
+                    utensilResources[isStoraged == true ? 1 : 0].gameObject.SetActive(true);
+                    break;
                 case ResourcesType.Food:
                     utensilResources[isStoraged != true ? 3 : 2].gameObject.SetActive(false);
-                     utensilResources[isStoraged == true ? 2 : 3].gameObject.SetActive(true);
-                     break;
+                    utensilResources[isStoraged == true ? 2 : 3].gameObject.SetActive(true);
+                    break;
                 case ResourcesType.Gold:
-                    utensilResources[isStoraged != true ? 5 : 4].gameObject.SetActive(false);
-                     utensilResources[isStoraged == true ? 4 : 5].gameObject.SetActive(true);
-                        break;
+                    utensilResources[isStoraged != true ? 4 : 5].gameObject.SetActive(false);
+                    utensilResources[isStoraged == true ? 5 : 4].gameObject.SetActive(true);
+                    break;
                 case ResourcesType.Stone:
                     utensilResources[isStoraged != true ? 6 : 4].gameObject.SetActive(false);
-                     utensilResources[isStoraged == true ? 4 : 6].gameObject.SetActive(true);
+                    utensilResources[isStoraged == true ? 4 : 6].gameObject.SetActive(true);
                     break;
                 default:
                     break;
@@ -273,6 +310,26 @@ namespace RTS
         public bool CanReachPosition(Vector3 positionTarget)
         {
             return Vector3.Distance(positionTarget, transform.position) <= rangeDistance;
+        }
+
+        protected override void GetTypeTarget<T>(T target)
+        {
+            animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 1);
+            animatorHandle.SetFloatAnimation(StateUnitAnimation.Idle_State, 1);
+
+            if (target is ResourceNode)
+            {
+                nodeResources = target as ResourceNode;
+                targetPosition = null;
+                MoveUnit(nodeResources.transform, nodeResources.distanceTargetStop);
+
+            }
+            if (target is Transform)
+            {
+                targetPosition = target as Transform;
+                nodeResources = null;
+                MoveUnit(targetPosition);
+            }
         }
     }
 }

@@ -11,14 +11,14 @@ namespace RTS.Units
 
 
 
-        [SerializeField]
-        BasicUnit worker;
+        // [SerializeField]
+        // BasicUnit worker;
 
-        [SerializeField]
-        BasicUnit warrior;
+        // [SerializeField]
+        // BasicUnit warrior;
 
-        [SerializeField]
-        BasicUnit healer;
+        // [SerializeField]
+        // BasicUnit healer;
 
         private void Start()
         {
@@ -27,26 +27,26 @@ namespace RTS.Units
 
         }
 
-        public StatInfoUnit GetBasicUnitStats(string type)
-        {
-            BasicUnit unit;
-            switch (type)
-            {
-                case "worker":
-                    unit = worker;
-                    break;
-                case "warrior":
-                    unit = warrior;
-                    break;
-                case "healer":
-                    unit = healer;
-                    break;
-                default:
-                    Debug.Log($"Unity :{type} could not be found ");
-                    return null;
-            }
-            return unit.statUnit;
-        }
+        // public StatInfoUnit GetBasicUnitStats(string type)
+        // {
+        //     // BasicUnit unit;
+        //     // switch (type)
+        //     // {
+        //     //     case "worker":
+        //     //         unit = worker;
+        //     //         break;
+        //     //     case "warrior":
+        //     //         unit = warrior;
+        //     //         break;
+        //     //     case "healer":
+        //     //         unit = healer;
+        //     //         break;
+        //     //     default:
+        //     //         Debug.Log($"Unity :{type} could not be found ");
+        //     //         return null;
+        //     // }
+        //    // return unit.statUnit;
+        // }
        
     }
 }

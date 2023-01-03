@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RTS.Units.Player;
+using UnityEngine.EventSystems;
 
 namespace RTS.InputManager
 {
@@ -31,7 +32,7 @@ namespace RTS.InputManager
         }
         public void HandleUnitMovement()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false)
             {
                 mousePos = Input.mousePosition;
 
@@ -55,7 +56,7 @@ namespace RTS.InputManager
                 }
 
             }
-            if(Input.GetMouseButtonUp(0))
+            if(Input.GetMouseButtonUp(0) && EventSystem.current.IsPointerOverGameObject() == false)
             {
                 foreach(Transform child in Player.PlayerManager.Instance.playerUnits)
                 {
@@ -70,7 +71,7 @@ namespace RTS.InputManager
                 isDragging = false;
             }
 
-            if(Input.GetMouseButtonDown(1))
+            if(Input.GetMouseButtonDown(1) && EventSystem.current.IsPointerOverGameObject() == false)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -88,7 +89,7 @@ namespace RTS.InputManager
                             foreach(Transform unit in selectUnits)
                             {
                                 UnitBase pU = unit.gameObject.GetComponent<UnitBase>();
-                                pU.MoveUnit(hit.point);
+                                pU.SetTarget(hit.transform);
                             }
                             break;
 

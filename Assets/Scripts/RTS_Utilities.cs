@@ -55,10 +55,12 @@
     }
     public enum ResourcesType
     {
+        None,
         Food,
         Wood,
         Gold,
-        Stone
+        Stone,
+        Farming
     }
 }
 
