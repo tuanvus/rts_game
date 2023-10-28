@@ -13,15 +13,15 @@ TagManager:
   - UI
   - 
   - 
-  - PlayerUnits
-  - EnemyUnits
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Terrain
+  - MiniMap Only
+  - Fog of War
+  - Resource
+  - MiniMap Hidden
+  - Field of View
+  - Projectiles
+  - Units
+  - Units Hidden
   - 
   - 
   - 
