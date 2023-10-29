@@ -28,7 +28,7 @@ public class ResourceCollector : MonoBehaviour
                 case ResourceSource.ResourceType.Wood:
                     max = maxWood;
                     break;
-                case ResourceSource.ResourceType.Ore:
+                case ResourceSource.ResourceType.Gold:
                     max = maxOre;
                     break;
                 default:
@@ -69,7 +69,7 @@ public class ResourceCollector : MonoBehaviour
             case ResourceSource.ResourceType.Wood:
                 max = maxWood;
                 break;
-            case ResourceSource.ResourceType.Ore:
+            case ResourceSource.ResourceType.Gold:
                 max = maxOre;
                 break;
         }

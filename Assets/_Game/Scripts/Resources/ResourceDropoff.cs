@@ -27,7 +27,7 @@ public class ResourceDropoff : MonoBehaviour
                 case ResourceSource.ResourceType.Wood:
                     clickableObject.faction.data.resourceWood += amount;
                     break;
-                case ResourceSource.ResourceType.Ore:
+                case ResourceSource.ResourceType.Gold:
                     clickableObject.faction.data.resourceGold += amount;
                     break;
             }

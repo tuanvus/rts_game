@@ -7,8 +7,9 @@ public class ResourceSource : MonoBehaviour
 {
     public enum ResourceType : int //Used for animation
     {
-        Ore = 1,
+        Gold = 1,
         Wood,
+        Food
     }
 
     public ResourceType resourceType;
