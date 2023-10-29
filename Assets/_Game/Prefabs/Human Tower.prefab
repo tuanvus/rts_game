@@ -103,10 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7336319879209260294}
   - component: {fileID: 7336319879209260289}
-  - component: {fileID: 7336319879209260288}
-  - component: {fileID: 1272955743488902703}
   - component: {fileID: 7336319879209260295}
-  - component: {fileID: 2726774210597941672}
   m_Layer: 15
   m_Name: Human Tower
   m_TagString: Untagged
@@ -150,38 +147,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &7336319879209260288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7336319879209260292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef375197f79c667409c0f96102628da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visible: 0
-  visionFadeTime: 1
-  drawViewDistance: 0
-  drawEngageDistance: 0
-  faction: {fileID: 11400000, guid: 85c4d6ddd476c4b40aa973060d5f71cc, type: 2}
-  template: {fileID: 11400000, guid: b980630ee0f9139438004b882d8bbea7, type: 2}
-  fieldOfView: {fileID: 7336319881126021450}
-  state: 0
---- !u!114 &1272955743488902703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7336319879209260292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b543f210365eeb241afb4044fed08aef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &7336319879209260295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -195,21 +160,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 2, z: 1.5}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &2726774210597941672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7336319879209260292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c96a2fc504ef2644b8fce79f2b2592d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  registers:
-  - listHolder: {fileID: 11400000, guid: 776b0c3caab84df46a0edfec83178832, type: 2}
-    objectToAdd: {fileID: 7336319879209260288}
 --- !u!1 &7336319879709397376
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +368,6 @@ GameObject:
   - component: {fileID: 7336319881126021451}
   - component: {fileID: 7336319881126021460}
   - component: {fileID: 7336319881126021461}
-  - component: {fileID: 7336319881126021450}
   m_Layer: 13
   m_Name: FieldOfView
   m_TagString: Untagged
@@ -491,26 +440,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7336319881126021450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7336319881126021448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2833f0e61db00ff46bcf49f457099882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewAngle: 360
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 2049
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
-  lastVisibleTargets: []
 --- !u!1 &8111532041508093963
 GameObject:
   m_ObjectHideFlags: 0

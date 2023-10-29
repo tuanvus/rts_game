@@ -635,7 +635,6 @@ GameObject:
   m_Component:
   - component: {fileID: 400030}
   - component: {fileID: 13700000}
-  - component: {fileID: 6110532320768356247}
   m_Layer: 1
   m_Name: ArrowMesh
   m_TagString: Untagged
@@ -728,16 +727,3 @@ SkinnedMeshRenderer:
     m_Center: {x: 1.1582972, y: 1.079354, z: -0.65985405}
     m_Extent: {x: 3.6017313, y: 2.9992025, z: 2.655383}
   m_DirtyAABB: 0
---- !u!114 &6110532320768356247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57425ef15b1be604c987b9da2fad8711, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationSpeed: 4

@@ -10,12 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4798272592709608}
   - component: {fileID: 195803719427457422}
-  - component: {fileID: 114393224487344650}
-  - component: {fileID: 9223354132843981425}
-  - component: {fileID: 3428514154620937981}
-  - component: {fileID: 4434285632901420789}
   - component: {fileID: 136947702010847266}
-  - component: {fileID: 4542764337897909974}
   m_Layer: 15
   m_Name: Unit
   m_TagString: Untagged
@@ -65,65 +60,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &114393224487344650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107782487055510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c750a88ea93938444a4639fd2d42858a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visible: 0
-  visionFadeTime: 1
-  drawViewDistance: 0
-  drawEngageDistance: 0
-  faction: {fileID: 0}
-  template: {fileID: 11400000, guid: 7eaf13cc549d085438c8b48343ae395c, type: 2}
-  fieldOfView: {fileID: 114716483690880562}
-  state: 0
-  projectileFirePoint: {fileID: 0}
-  alignToGround: 0
---- !u!114 &9223354132843981425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107782487055510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ed5bed1ecd523438f097d896f47440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3428514154620937981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107782487055510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b543f210365eeb241afb4044fed08aef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4434285632901420789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107782487055510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a72ee8c8c0378c439700f383da1bec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitAnimations: {fileID: 0}
 --- !u!136 &136947702010847266
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -138,21 +74,6 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
---- !u!114 &4542764337897909974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107782487055510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c96a2fc504ef2644b8fce79f2b2592d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  registers:
-  - listHolder: {fileID: 11400000, guid: 01c7bc88a8159d34f9070b8e426410e6, type: 2}
-    objectToAdd: {fileID: 114393224487344650}
 --- !u!1 &1107830643762534
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,8 +316,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4335943480541738}
-  - component: {fileID: 114716483690880562}
-  - component: {fileID: 4746091226355733382}
   m_Layer: 13
   m_Name: FieldOfView
   m_TagString: Untagged
@@ -419,38 +338,6 @@ Transform:
   m_Father: {fileID: 4798272592709608}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114716483690880562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509708391563678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2833f0e61db00ff46bcf49f457099882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewAngle: 360
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 98304
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 2304
-  lastVisibleTargets: []
---- !u!114 &4746091226355733382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509708391563678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b4cbd7124657b940a95017be49ee731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1597330795489374
 GameObject:
   m_ObjectHideFlags: 0

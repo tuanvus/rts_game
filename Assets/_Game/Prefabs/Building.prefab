@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 8373508903929679139}
   - component: {fileID: 8373508903929679164}
   - component: {fileID: 8373508903929679165}
-  - component: {fileID: 8373508903929679138}
   m_Layer: 13
   m_Name: FieldOfView
   m_TagString: Untagged
@@ -198,26 +197,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8373508903929679138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373508903929679136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2833f0e61db00ff46bcf49f457099882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewAngle: 360
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 2049
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
-  lastVisibleTargets: []
 --- !u!1 &8373508903984173420
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,10 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8373508903984173422}
   - component: {fileID: 8373508903984173417}
-  - component: {fileID: 8373508903984173416}
-  - component: {fileID: 22807673784795719}
   - component: {fileID: 8373508903984173423}
-  - component: {fileID: -5463984247288531520}
   m_Layer: 15
   m_Name: Building
   m_TagString: Untagged
@@ -275,38 +251,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &8373508903984173416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373508903984173420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef375197f79c667409c0f96102628da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visible: 0
-  visionFadeTime: 1
-  drawViewDistance: 0
-  drawEngageDistance: 0
-  faction: {fileID: 0}
-  template: {fileID: 0}
-  fieldOfView: {fileID: 8373508903929679138}
-  state: 0
---- !u!114 &22807673784795719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373508903984173420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b543f210365eeb241afb4044fed08aef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &8373508903984173423
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -320,21 +264,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 1, z: 2.5}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &-5463984247288531520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373508903984173420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c96a2fc504ef2644b8fce79f2b2592d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  registers:
-  - listHolder: {fileID: 11400000, guid: 776b0c3caab84df46a0edfec83178832, type: 2}
-    objectToAdd: {fileID: 8373508903984173416}
 --- !u!1 &8373508904559875560
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,10 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5588801240877581876}
-  - component: {fileID: 5047124200015331554}
   - component: {fileID: 2432045517047614057}
   - component: {fileID: 3479767158104501552}
-  - component: {fileID: 3795460632079513696}
   m_Layer: 14
   m_Name: Fireball
   m_TagString: Untagged
@@ -36,23 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
---- !u!114 &5047124200015331554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7116211088636421781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13259f74143849b4bbd425095cb1473c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileFlyMode: 1
-  maxCurveHeight: 0
-  trackSpeed: 10
-  projectileRotationMode: 0
-  useFactionMaterial: 0
 --- !u!54 &2432045517047614057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82,27 +63,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3795460632079513696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7116211088636421781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8917927eb4523a47bbe857c4b9156e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitOffset: 0.1
-  useFirePointRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 0}
-  hitEffectPrefab: {fileID: 1845764070681338, guid: ac2312a3e32471549882f1a6da5568e6,
-    type: 3}
-  spawnEffectPrefab: {fileID: 1023540632372170, guid: 12c5a36b60a39734f80150bc3e23e850,
-    type: 3}
-  detachedPrefabs:
-  - {fileID: 7837155442016204390}
 --- !u!1001 &7837880405010830472
 PrefabInstance:
   m_ObjectHideFlags: 0

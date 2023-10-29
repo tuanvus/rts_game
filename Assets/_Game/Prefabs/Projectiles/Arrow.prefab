@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415909530425636458}
-  - component: {fileID: 8131539347791241516}
   - component: {fileID: 9002799267271084947}
   - component: {fileID: 8099866077022629461}
   m_Layer: 14
@@ -35,23 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &8131539347791241516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393363332613751131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13259f74143849b4bbd425095cb1473c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileFlyMode: 1
-  maxCurveHeight: 0.5
-  trackSpeed: 25
-  projectileRotationMode: 0
-  useFactionMaterial: 1
 --- !u!54 &9002799267271084947
 Rigidbody:
   m_ObjectHideFlags: 0
