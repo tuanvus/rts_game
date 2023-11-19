@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using AnnulusGames.LucidTools.Inspector;
@@ -21,6 +22,11 @@ public class StateUnitAnimation
 public class AnimatorHandle : MonoBehaviour
 {
     [SerializeField] Animator animator;
+
+    private void OnValidate()
+    {
+         TryGetComponent(out animator);
+    }
 
     private void Awake()
     {

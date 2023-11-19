@@ -11,4 +11,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Game/Scenes/test_rift.unity
     guid: 82e342b741f7dc147bf6f16d2efe5101
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: c8fc80c3e69f1024ab4eabc4105499d4,
+      type: 2}

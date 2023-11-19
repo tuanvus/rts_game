@@ -1,27 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using AnnulusGames.LucidTools.Inspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 
 [RequireComponent(typeof(MiniMapDisplay))]
 [RequireComponent(typeof(InteractionObject))]
-public class UnitsBase : MonoBehaviour,IHit
+[RequireComponent(typeof(GameEntityInfo))]
+public class UnitsBase : MonoBehaviour, IHit
 {
-    [SerializeField] protected GameEntityInfo entityInfo;
+    [TitleHeader("Components")] [SerializeField] protected GameEntityInfo entityInfo;
     [SerializeField] protected HealManager healManager;
-    [SerializeField] protected UnitSO unitSO;
-    [FormerlySerializedAs("animationHandle")] [SerializeField] protected AnimatorHandle animatorHandle;
+    [SerializeField] protected AnimatorHandle animatorHandle;
+    [SerializeField] protected InteractionObject interactionObject;
+    [SerializeField] protected UnitInfo unitInfo;
+    [TitleHeader("Config")] [SerializeField] protected UnitSO unitSO;
+
     void Start()
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+
+    [Button]
+    public void SetupField()
     {
-        
+        entityInfo = GetComponent<GameEntityInfo>();
+        this.TryGetComponentInChildren(out healManager);
+        this.TryGetComponentInChildren(out animatorHandle);
+        this.TryGetComponentInChildren(out unitInfo);
+
+        TryGetComponent(out interactionObject);
+        this.CopyAttributes(entityInfo, unitSO.entitySerializable);
+        this.CopyAttributes(unitInfo, unitSO.entityStatSerializable);
     }
+
 
     public void TakeDamage(int damage)
     {
