@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using NaughtyAttributes;
+using AnnulusGames.LucidTools.Inspector;
 using UnityEngine;
 
 public class GenPrefabs : MonoBehaviour

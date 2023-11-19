@@ -1,0 +1,9 @@
+
+public enum RallyType
+{
+	WALK,
+	GATHERFOOD,
+	GATHERWOOD,
+	GATHERGOLD,
+	BUILD
+}

@@ -1,8 +1,6 @@
 {
   "dependencies": {
     "com.baba-s.kogane-default-inspector": "https://github.com/baba-s/Kogane.DefaultInspector.git",
-    "com.baba-s.kogane-inspector-component-header-gui": "https://github.com/baba-s/Kogane.InspectorComponentHeaderGUI.git",
-    "com.baba-s.kogane-tooltip-window": "https://github.com/baba-s/Kogane.TooltipWindow.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.analytics": "3.6.12",
     "com.unity.editorcoroutines": "1.0.0",

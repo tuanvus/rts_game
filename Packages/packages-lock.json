@@ -7,20 +7,6 @@
       "dependencies": {},
       "hash": "cb8c71248ea9fe7cbffdba3691404e01c993a594"
     },
-    "com.baba-s.kogane-inspector-component-header-gui": {
-      "version": "https://github.com/baba-s/Kogane.InspectorComponentHeaderGUI.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "084f64c8aaef6aa84d86dd77ed2a76528b5c426b"
-    },
-    "com.baba-s.kogane-tooltip-window": {
-      "version": "https://github.com/baba-s/Kogane.TooltipWindow.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "5afd90ab6f3777dace7a848d320e2fb78dcf9f0f"
-    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

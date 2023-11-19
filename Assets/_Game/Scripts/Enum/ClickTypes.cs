@@ -1,0 +1,9 @@
+public enum ClickTypes
+{
+	NOCLICK,
+	SINGLECLICK,
+	DRAG,
+	MINIMAP,
+	OTHERINTERFACE,
+	BUILDING
+}
