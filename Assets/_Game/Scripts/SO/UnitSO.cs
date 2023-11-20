@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ public class UnitSO : ScriptableObject
     public EntityStatSerializable entityStatSerializable;
     [TitleHeader("Prefab")] public GameObject humanPrefab;
     public GameObject infectedPrefab;
+
+    public void OnValidate()
+    {
+       string nameScript = this.name.ToUpper();
+       
+    }
 }
 
 [System.Serializable]
@@ -29,7 +36,29 @@ public class EntityStatSerializable
 
 public enum UnitType
 {
-    WORKER,
-    WARRIOR,
-    HEALER
+    ARCHER,
+    COMMANDER,
+    CROSSBOWMAN,
+    HALBERDIER,
+    HEAVY_CAVALRY,
+    HEAVY_INFANTRY,
+    HEAVYSWORDMAN,
+    HIGHPRIEST,
+    KING,
+    LIGHT_CAVALRY,
+    LIGHT_INFANTRY,
+    MAGE,
+    MOUNTED_KING,
+    MOUNTED_KNIGHT,
+    MOUNTED_MAGE,
+    MOUNTED_PALADIN,
+    MOUNTED_PRIEST,
+    MOUNTED_SCOUT,
+    PALADIN,
+    PEASANT,
+    PRIEST,
+    SCOUT,
+    SETTLER,
+    SPEARMAN,
+    SWORDMAN,
 }

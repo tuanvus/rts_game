@@ -9788,6 +9788,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 682475566}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &684074993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 684074995}
+  - component: {fileID: 684074994}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &684074994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684074993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddefbad94e5b644c924b266a91b1bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Datas:
+  - {fileID: 179124, guid: 04c79b5f6e9ebab48af48fdcf7b6d570, type: 3}
+  - {fileID: 134188, guid: a9733678a87478b4689672067b7718fb, type: 3}
+  - {fileID: 145858, guid: e93eced9cc2d545428e4a4b45713048d, type: 3}
+  - {fileID: 163764, guid: 148322894bbd52e488116a8616dfbe4c, type: 3}
+  - {fileID: 197908, guid: 892bd1c95e4ec2f43a7e0a49c68f27f1, type: 3}
+  - {fileID: 150198, guid: b4a1d0e6439682a4e958fb7c874ccb8c, type: 3}
+  - {fileID: 182410, guid: 75925c365bd895145beefbc806717633, type: 3}
+  - {fileID: 190810, guid: 5f6ee5df488746f4ca1b939fbaac29e2, type: 3}
+  - {fileID: 169662, guid: 3c54df43aea316143beec51be2902cac, type: 3}
+  - {fileID: 172856, guid: 4e3c7da5fb6ce5a47a0a7dbc18b843c6, type: 3}
+  - {fileID: 111318, guid: 46628851bff3fa341a13534728534ea3, type: 3}
+  - {fileID: 145554, guid: 1854a3b64b66724429ff0b04e0891fc1, type: 3}
+  - {fileID: 110684, guid: a36479667d1b0f74bbd661b17c3f9476, type: 3}
+  - {fileID: 158504, guid: 511c566bd068dca4bb9794da5f53052a, type: 3}
+  - {fileID: 165872, guid: bc0e691c888319a4daf7fd1c112e7d03, type: 3}
+  - {fileID: 115186, guid: 3b5b8018d62c7fb43b2805cf19ffaff7, type: 3}
+  - {fileID: 182384, guid: 9948d4669f9006844a963afb88d60afa, type: 3}
+  - {fileID: 151392, guid: 3444512bc6a211a4fbc66458b13748ed, type: 3}
+  - {fileID: 190608, guid: 675bfa49ad0f04c47b900d8546860383, type: 3}
+  - {fileID: 155500, guid: 53eb1e18130e9be4387a785b482187e1, type: 3}
+  - {fileID: 169256, guid: 7b4e51ccca67b514d883b197e0f59efd, type: 3}
+  - {fileID: 177316, guid: 6652791f0d19f3b408a94277d330b59b, type: 3}
+  - {fileID: 9173185916814592734, guid: cc1d9ae112f9093468713bfc446711b2, type: 3}
+  - {fileID: 123088, guid: 0755a95e2e1b5f44e8226989fb76f2cf, type: 3}
+  - {fileID: 155132, guid: bcc60fdbd3a37b44cbc0cb99db483477, type: 3}
+  nameT: Archer,Commander,Crossbowman,Halberdier,Heavy_Cavalry,Heavy_Infantry,HeavySwordman,HighPriest,King,Light_Cavalry,Light_Infantry,Mage,Mounted_King,Mounted_Knight,Mounted_Mage,Mounted_Paladin,Mounted_Priest,Mounted_Scout,Paladin,Peasant,Priest,Scout,Settler,Spearman,Swordman,
+--- !u!4 &684074995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684074993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.719078, y: 0.4279608, z: 60.61142}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &689306829
 GameObject:
   m_ObjectHideFlags: 0
@@ -23153,6 +23224,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594199475}
   m_Mesh: {fileID: 4300772, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
+--- !u!1 &1601154073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1601154074}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1601154074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601154073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1749654769}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1611622141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23836,13 +23938,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32cfa3f4b12be594d80aa9aa47cedd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: 
+  unitName: aaa
   description: 
-  foodCost: 0
-  woodCost: 0
-  goldCost: 0
-  buildTime: 0
-  minTier: 0
+  foodCost: 1
+  woodCost: 1
+  goldCost: 1
+  buildTime: 1
+  minTier: 1
 --- !u!114 &1658045854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25891,6 +25993,38 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.08504334, y: -0.031687796, z: 0.00000014901161}
     m_Extent: {x: 0.5344156, y: 0.33909798, z: 0.7707151}
   m_DirtyAABB: 0
+--- !u!1 &1749654768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1749654769}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1749654769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749654768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.719078, y: 0.4279608, z: 60.61142}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1601154074}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1760654587
 GameObject:
   m_ObjectHideFlags: 0
@@ -29658,16 +29792,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70872ac5d7913f34ebf0c43bc7c62418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
-  atkRange: 0
-  atkSpeed: 0
-  armor: 0
-  damage: 0
-  health: 0
-  healthMax: 0
-  critRatio: 0
+  cost: 10
+  atkRange: 1
+  atkSpeed: 1
+  armor: 1
+  damage: 1
+  health: 1
+  healthMax: 1
+  critRatio: 1
   type: 0
-  unitName: 
+  unitName: aaa
 --- !u!4 &2017983346
 Transform:
   m_ObjectHideFlags: 0

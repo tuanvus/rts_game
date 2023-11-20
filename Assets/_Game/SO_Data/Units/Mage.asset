@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97bacd8bdc98cc4438b2c67cb1f847e1, type: 3}
-  m_Name: TT_Peasant
+  m_Name: Mage
   m_EditorClassIdentifier: 
   entitySerializable:
-    unitName: a
+    unitName: Mage
     description: 
-    foodCost: 1
-    woodCost: 1
-    goldCost: 1
-    buildTime: 1
-    minTier: 1
+    foodCost: 0
+    woodCost: 0
+    goldCost: 0
+    buildTime: 0
+    minTier: 0
   entityStatSerializable:
     cost: 0
-    atkRange: 0
-    atkSpeed: 0
+    atkRange: 1
+    atkSpeed: 1
     armor: 0
-    damage: 0
+    damage: 10
     health: 0
-    healthMax: 0
+    healthMax: 100
     critRatio: 0
-    type: 0
-    unitName: 
-  humanPrefab: {fileID: 0}
+    type: 11
+    unitName: Mage
+  humanPrefab: {fileID: 145554, guid: 1854a3b64b66724429ff0b04e0891fc1, type: 3}
   infectedPrefab: {fileID: 0}
