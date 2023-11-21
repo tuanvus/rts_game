@@ -1,10 +1,11 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionObject : MonoBehaviour
+public class PlayerManager : Singleton<PlayerManager>
 {
-    public GameObject highlightRing;
+    public Transform playerUnits;
     void Start()
     {
         

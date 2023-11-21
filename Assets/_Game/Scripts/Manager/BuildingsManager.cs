@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingsManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private List<GameObject> objBuilding = new List<GameObject>();
     void Start()
     {
         

@@ -14,6 +14,8 @@ public class CSharpGeneratorTool : MonoBehaviour
 {
     public List<GameObject> Datas;
     public string nameT;
+    public List<GameObject> building;
+    public string nameBuilding;
 
     [Button]
     void GenText()
@@ -33,6 +35,43 @@ public class CSharpGeneratorTool : MonoBehaviour
 
         AssetDatabase.Refresh();
         //  CreatorCs("DataRemote", classStr);
+    }
+
+    [Button]
+    public void Building()
+    {
+        Debug.Log("game");
+        foreach (GameObject dataPrefab in building)
+        {
+                string prefabName = dataPrefab.name;
+                nameBuilding += prefabName + ",";
+        }
+    }
+    
+    [Button]
+    void Test()
+    {
+        string objectName = gameObject.name;
+
+        // Tên của script bạn muốn thêm
+        string scriptToBeAdded = objectName;
+
+
+        // Kiểm tra xem script đã tồn tại chưa
+        if (!string.IsNullOrEmpty(scriptToBeAdded) && GetComponent(scriptToBeAdded) == null)
+        {
+            Debug.Log("tồn tại");
+            // Nếu chưa tồn tại, thêm script vào đối tượng
+            System.Type scriptType = System.Type.GetType(scriptToBeAdded);
+            if (scriptType != null)
+            {
+                gameObject.AddComponent(scriptType);
+            }
+            else
+            {
+                Debug.LogError("Không thể tìm thấy loại script: " + scriptToBeAdded);
+            }
+        }
     }
 
     void CreatorCs(string className, string conten)
@@ -96,6 +135,7 @@ public class CSharpGeneratorTool : MonoBehaviour
                     {
                         existingItem.humanPrefab = i;
                     }
+
                     EditorUtility.SetDirty(existingItem);
                     AssetDatabase.SaveAssets();
                     AssetDatabase.Refresh();

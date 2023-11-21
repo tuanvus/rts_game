@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionObject : MonoBehaviour
+public class ArcheryBuilding : BuildingBase
 {
-    public GameObject highlightRing;
+    // Start is called before the first frame update
     void Start()
     {
         

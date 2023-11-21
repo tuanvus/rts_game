@@ -7,22 +7,10 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 
-[RequireComponent(typeof(MiniMapDisplay))]
-[RequireComponent(typeof(InteractionObject))]
-[RequireComponent(typeof(GameEntityInfo))]
-public class UnitsBase : MonoBehaviour, IHit
+public class UnitsBase : EntityComponent, IHit
 {
-    [TitleHeader("Components")] [SerializeField] protected GameEntityInfo entityInfo;
-    [SerializeField] protected HealManager healManager;
     [SerializeField] protected AnimatorHandle animatorHandle;
-    [SerializeField] protected InteractionObject interactionObject;
-    [SerializeField] protected UnitInfo unitInfo;
     [TitleHeader("Config")] [SerializeField] protected UnitSO unitSO;
-
-    void Start()
-    {
-    }
-
 
     [Button]
     public void SetupField()
@@ -36,7 +24,6 @@ public class UnitsBase : MonoBehaviour, IHit
         this.CopyAttributes(entityInfo, unitSO.entitySerializable);
         this.CopyAttributes(unitInfo, unitSO.entityStatSerializable);
     }
-
 
     public void TakeDamage(int damage)
     {

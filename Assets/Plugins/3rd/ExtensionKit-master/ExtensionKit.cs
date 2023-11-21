@@ -2821,6 +2821,13 @@ public static class LayerMaskUtility
         var objLayerMask = 1 << gameObj.layer;
         return (layerMask.value & objLayerMask) == objLayerMask;
     }
+    public static int IsValue(GameObject gameObj)
+    {
+        // 根据Layer数值进行移位获得用于运算的Mask值
+        return 1 << gameObj.layer;
+
+    }
+
 }
 
 public static class MaterialExtension
