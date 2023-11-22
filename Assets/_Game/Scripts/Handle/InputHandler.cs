@@ -76,16 +76,17 @@ public class InputHandler : Singleton<InputHandler>
             mousePos = Input.mousePosition;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+            isDragging = true;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(" vao");
 
                 LayerMask layerHit = hit.transform.gameObject.layer;
 
                 if (LayerMaskUtility.IsInLayerMask(hit.transform.gameObject, unitLayerMask))
                 {
                     // Clicked on a unit
+                    Debug.Log(" vao");
+
                     SelectUnit(hit.transform, Input.GetKey(KeyCode.LeftShift));
                 }
                 else if (LayerMaskUtility.IsInLayerMask(hit.transform.gameObject, objectLayerMask))
@@ -102,30 +103,30 @@ public class InputHandler : Singleton<InputHandler>
             }
             else
             {
-                isDragging = true;
+              //  isDragging = true;
 
                 Debug.Log("ko vao ray");
                 DeselectUnits();
             }
         }
 
-        if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject() == false)
-        {
-            if (isDragging)
-            {
-                foreach (Transform child in PlayerManager.Instance.playerUnits)
-                {
-                    if (isWithinSelectionBounds(child))
-                    {
-                        SelectUnit(child, true);
-                    }
-                    else
-                    {
-                        child.GetComponent<InteractionObject>().highlightRing.Hide();
-                    }
-                }
-            }
-        }
+        // if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject() == false)
+        // {
+        //     if (isDragging)
+        //     {
+        //         foreach (Transform child in PlayerManager.Instance.playerUnits)
+        //         {
+        //             if (isWithinSelectionBounds(child))
+        //             {
+        //                 SelectUnit(child, true);
+        //             }
+        //             else
+        //             {
+        //                 child.GetComponent<InteractionObject>().highlightRing.Hide();
+        //             }
+        //         }
+        //     }
+        // }
 
         if (Input.GetMouseButtonUp(0) && EventSystem.current.IsPointerOverGameObject() == false)
         {
@@ -150,7 +151,13 @@ public class InputHandler : Singleton<InputHandler>
 
         if (!selectUnits.Contains(unit))
         {
+            Debug.Log("ck 1");
             selectUnits.Add(unit);
+        }
+        else
+        {
+            Debug.Log("ck 2");
+
         }
 
         selectUnits.DoIfNotNull(() =>

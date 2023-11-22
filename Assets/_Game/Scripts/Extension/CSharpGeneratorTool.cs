@@ -17,25 +17,7 @@ public class CSharpGeneratorTool : MonoBehaviour
     public List<GameObject> building;
     public string nameBuilding;
 
-    [Button]
-    void GenText()
-    {
-        nameT = "";
-        foreach (GameObject dataPrefab in Datas)
-        {
-            if (dataPrefab != null)
-            {
-                string prefabName = dataPrefab.name;
-                prefabName = prefabName.Replace("TT_", "");
-                nameT += prefabName + ",";
-                string generatedCSharp = GenJsonToCshap(prefabName);
-                CreatorCs(prefabName, generatedCSharp);
-            }
-        }
-
-        AssetDatabase.Refresh();
-        //  CreatorCs("DataRemote", classStr);
-    }
+ 
 
     [Button]
     public void Building()
@@ -74,38 +56,9 @@ public class CSharpGeneratorTool : MonoBehaviour
         }
     }
 
-    void CreatorCs(string className, string conten)
-    {
-        string fileNameCs = Application.dataPath + "/_Game/Scripts/Units/Unit/" + className + ".cs";
+    
 
-        try
-        {
-            if (!File.Exists(fileNameCs))
-            {
-                FileStream fs = new FileStream(fileNameCs, FileMode.OpenOrCreate, FileAccess.Write);
-                fs.Close();
-                File.AppendAllText(fileNameCs, Environment.NewLine + conten);
-                AssetDatabase.Refresh();
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.LogWarning(ex);
-        }
-    }
-
-    string GenJsonToCshap(string className)
-    {
-        var classStr = "using System;\n";
-        classStr += "using System.Collections.Generic;\n";
-        classStr += "using UnityEngine;\n";
-        classStr += "public class " + className + " : UnitsBase\n";
-        classStr += "{\n";
-
-        classStr += "}\n";
-        return classStr;
-    }
-
+   
     [Button]
     public void CreatorInventoryItem()
     {
