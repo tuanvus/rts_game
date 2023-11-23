@@ -22,7 +22,6 @@ public class StateUnitAnimation
 public class AnimatorHandle : MonoBehaviour
 {
     [SerializeField] Animator animator;
-
     private void OnValidate()
     {
          TryGetComponent(out animator);

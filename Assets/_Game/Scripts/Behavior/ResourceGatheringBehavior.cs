@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using AnnulusGames.LucidTools.Inspector;
 using UnityEngine;
 
-public class ResourceGatheringBahvior : MonoBehaviour
+public class ResourceGatheringBehavior : StateHandler
 {
     [SerializeField] AnimatorHandle animatorHandle;
-    [SerializeField] NodeResource testRs;
     [SerializeField] NodeResource nodeResources;
     [SerializeField] NodeResource nodeStorage;
 

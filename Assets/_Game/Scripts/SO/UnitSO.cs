@@ -12,6 +12,7 @@ public class UnitSO : ScriptableObject
     [TitleHeader("Prefab")] public GameObject humanPrefab;
     public GameObject infectedPrefab;
 
+
     public void OnValidate()
     {
        string nameScript = this.name.ToUpper();

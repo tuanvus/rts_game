@@ -127,6 +127,22 @@ public class InputHandler : Singleton<InputHandler>
         //         }
         //     }
         // }
+        if (HaveSelectedUnits() && Input.GetMouseButtonUp(0) && EventSystem.current.IsPointerOverGameObject() == false)
+        {
+            Debug.Log("vao");
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                foreach (var unit in selectUnits)
+                {
+                    unit.GetComponent<UnitsBase>().Movement(hit.point);
+                }
+            }
+
+   
+            DeselectUnits();
+        }
 
         if (Input.GetMouseButtonUp(0) && EventSystem.current.IsPointerOverGameObject() == false)
         {

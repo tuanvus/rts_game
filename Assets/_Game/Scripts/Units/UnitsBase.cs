@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using AnnulusGames.LucidTools.Inspector;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
@@ -12,12 +13,14 @@ using Object = UnityEngine.Object;
 public class UnitsBase : EntityComponent, IHit
 {
     [SerializeField] protected AnimatorHandle animatorHandle;
+    [SerializeField] protected NavMeshAgent agent;
     [TitleHeader("Config")] [SerializeField] protected UnitSO unitSO;
 
    // [Button]
     public void SetupField()
     {
         entityInfo = GetComponent<GameEntityInfo>();
+        agent = GetComponent<NavMeshAgent>();
         this.TryGetComponentInChildren(out healManager);
         this.TryGetComponentInChildren(out animatorHandle);
         this.TryGetComponentInChildren(out unitInfo);
@@ -45,5 +48,11 @@ public class UnitsBase : EntityComponent, IHit
 
     public void TakeDamage(int damage)
     {
+        
+    }
+
+    public void Movement(Vector3 pos)
+    {
+        agent.SetDestination(pos);
     }
 }
