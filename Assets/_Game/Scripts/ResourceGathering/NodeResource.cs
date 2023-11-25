@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class NodeResource : MonoBehaviour
+public class NodeResource : MonoBehaviour,IResource
 {
     public GatherType gatherType;
     public int amount;

@@ -1,55 +1,78 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using AnnulusGames.LucidTools.Inspector;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class MovementBehavior : StateHandler
 {
-    // Start is called before the first frame update
-    [SerializeField] float rangeDistance;
-    [SerializeField] private AnimatorHandle animatorHandle;
-    [SerializeField] private NavMeshAgent navAgent;
+    public Action onCompleteMove;
 
+    // Start is called before the first frame update
+    [SerializeField,ReadOnly] float rangeDistance;
+    [SerializeField,ReadOnly] private AnimatorHandle animatorHandle;
+    [SerializeField,ReadOnly] private NavMeshAgent navAgent;
+    [SerializeField] bool isGathering;
+    [SerializeField] bool isAttack;
+    
     void Start()
     {
     }
 
-    public bool CanReachPosition(Vector3 positionTarget)
+
+    public void Initialization(AnimatorHandle animatorHandle, NavMeshAgent navAgent)
     {
-        return Vector3.Distance(positionTarget, transform.position) <= rangeDistance;
+        this.animatorHandle = animatorHandle;
+        this.navAgent = navAgent;
     }
 
-    void MovingToTarget(Transform target)
+  
+   public void MovingToTarget(Transform target)
     {
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 1);
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Run_State, 1);
+
+        
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.speed, 1);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.run_State, 1);
 
         navAgent.SetDestination(target.transform.position);
         rangeDistance = 1;
         navAgent.stoppingDistance = rangeDistance;
-        if (CanReachPosition(target.transform.position))
-        {
-            // OnUpdateResource?.Invoke(nodeResources.resourcesType, capacityResources);
-            //capacityResources = 0;
-            // state = StateUnit.MovingToResour;
-            //GetUtensilResources();
-        }
+        navAgent.autoBraking = false;
+        StartCoroutine(WaitForDestinationReached());
     }
 
-    void MovingToTarget(Vector3 target)
+   public  void MovingToTarget(Vector3 target)
     {
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 1);
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Run_State, 1);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.speed, 1);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.run_State, 1);
 
         navAgent.SetDestination(target);
         rangeDistance = 1;
         navAgent.stoppingDistance = rangeDistance;
-        if (CanReachPosition(target))
+        navAgent.autoBraking = false;
+        StartCoroutine(WaitForDestinationReached());
+    }
+    
+    IEnumerator WaitForDestinationReached()
+    {
+        while (true)
         {
-            // OnUpdateResource?.Invoke(nodeResources.resourcesType, capacityResources);
-            //capacityResources = 0;
-            // state = StateUnit.MovingToResour;
-            //GetUtensilResources();
+            if (!navAgent.pathPending && navAgent.remainingDistance <= navAgent.stoppingDistance)
+            {
+                // Agent đã đến đích
+                OnDestinationReached();
+                yield break;
+            }
+            yield return null;
         }
+    }
+
+    private void OnDestinationReached()
+    {
+        // Hàm được gọi khi agent đến đích
+        Debug.Log("Agent đã đến đích!");
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.speed, 0);
+        onCompleteMove?.Invoke();
     }
 }

@@ -9,6 +9,7 @@ public class UnitSO : ScriptableObject
 {
     public EntitySerializable entitySerializable;
     public EntityStatSerializable entityStatSerializable;
+
     [TitleHeader("Prefab")] public GameObject humanPrefab;
     public GameObject infectedPrefab;
 

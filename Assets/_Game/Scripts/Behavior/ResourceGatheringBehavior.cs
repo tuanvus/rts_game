@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class ResourceGatheringBehavior : StateHandler
 {
+    public Action<Vector3> OnMove;
+    
     [SerializeField] AnimatorHandle animatorHandle;
     [SerializeField] NodeResource nodeResources;
     [SerializeField] NodeResource nodeStorage;
@@ -34,8 +36,8 @@ public class ResourceGatheringBehavior : StateHandler
 
     void MovingToResources()
     {
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 1);
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Run_State, 0);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.speed, 1);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.run_State, 0);
         //  navAgent.SetDestination(nodeResources.transform.position);
         //rangeDistance = nodeResources.distanceTargetStop;
         //  navAgent.stoppingDistance = rangeDistance;
@@ -47,8 +49,8 @@ public class ResourceGatheringBehavior : StateHandler
 
     void MovingToStorage()
     {
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 1);
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Run_State, 1);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.speed, 1);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.run_State, 1);
 
         //  navAgent.SetDestination(nodeStorage.transform.position);
         //  rangeDistance = nodeStorage.distanceTargetStop;
@@ -66,7 +68,7 @@ public class ResourceGatheringBehavior : StateHandler
     {
     }
 
-    void GatheringResources()
+   public void GatheringResources()
     {
         // Debug.Log("GatheringResources =" + nodeResources.resourcesType);
         // switch (nodeResources.resourcesType)
@@ -91,13 +93,13 @@ public class ResourceGatheringBehavior : StateHandler
 
     void GatheringResourcesWood()
     {
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 0);
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Idle_State, 1);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.speed, 0);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.idle_State, 1);
         if (canWorking)
         {
             if (capacityResources >= capacityResourcesMax)
             {
-                animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Wood, false);
+              //  animatorHandle.SetBoolAnimation(animatorHandle.GetParam.Work_Wood, false);
                 //  state = StateUnit.MovingToStorage;
                 //GetUtensilResources(nodeResources.resourcesType, true);
             }
@@ -106,7 +108,7 @@ public class ResourceGatheringBehavior : StateHandler
                 Debug.Log("working");
                 canWorking = false;
                 this.Wait(timeWorkingResource, () => canWorking = true);
-                animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Wood, true);
+               // animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Wood, true);
                 capacityResources++;
                 //GetUtensilResources(nodeResources.resourcesType);
             }
@@ -115,15 +117,15 @@ public class ResourceGatheringBehavior : StateHandler
 
     void GatheringResourcesFood()
     {
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 0);
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Idle_State, 1);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.speed, 0);
+        animatorHandle.SetFloatAnimation(animatorHandle.GetParam.idle_State, 1);
         if (canWorking)
         {
             canWorking = false;
             this.Wait(timeWorkingResource, () => canWorking = true);
             if (capacityResources >= capacityResourcesMax)
             {
-                animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Food, false);
+                //animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Food, false);
                 //  state = StateUnit.MovingToStorage;
                 //  GetUtensilResources(nodeResources.resourcesType, true);
             }
@@ -134,7 +136,7 @@ public class ResourceGatheringBehavior : StateHandler
                 Debug.Log("working");
                 canWorking = false;
                 this.Wait(timeWorkingResource, () => canWorking = true);
-                animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Food, true);
+               // animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Food, true);
                 capacityResources++;
             }
         }
@@ -142,13 +144,13 @@ public class ResourceGatheringBehavior : StateHandler
 
     void GatheringResourcesGold()
     {
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 0);
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Idle_State, 1);
+      //  animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 0);
+      //  animatorHandle.SetFloatAnimation(StateUnitAnimation.Idle_State, 1);
         if (canWorking)
         {
             if (capacityResources >= capacityResourcesMax)
             {
-                animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Gold, false);
+          //      animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Gold, false);
                 // state = StateUnit.MovingToStorage;
                 GetUtensilResources(nodeResources.gatherType, true);
             }
@@ -157,7 +159,7 @@ public class ResourceGatheringBehavior : StateHandler
                 //  GetUtensilResources(nodeResources.resourcesType);
                 canWorking = false;
                 this.Wait(timeWorkingResource, () => canWorking = true);
-                animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Gold, true);
+              //  animatorHandle.SetBoolAnimation(StateUnitAnimation.Work_Gold, true);
                 capacityResources++;
             }
         }
@@ -207,8 +209,8 @@ public class ResourceGatheringBehavior : StateHandler
 
     protected void GetTypeTarget<T>(T target)
     {
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 1);
-        animatorHandle.SetFloatAnimation(StateUnitAnimation.Idle_State, 1);
+       // animatorHandle.SetFloatAnimation(StateUnitAnimation.Speed, 1);
+      //  animatorHandle.SetFloatAnimation(StateUnitAnimation.Idle_State, 1);
 
         if (target is NodeResource)
         {

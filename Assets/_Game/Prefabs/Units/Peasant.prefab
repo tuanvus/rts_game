@@ -3780,6 +3780,61 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.06498811, y: 0.020641163, z: 0.00000014901161}
     m_Extent: {x: 0.5143604, y: 0.28673673, z: 0.7707151}
   m_DirtyAABB: 0
+--- !u!1 &1701184997600836730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1809484123894284786}
+  - component: {fileID: 1058376614829932650}
+  m_Layer: 0
+  m_Name: Gathering
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1809484123894284786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701184997600836730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7338306217572895193}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1058376614829932650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701184997600836730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270918641413cfd46af0e8f440598683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animatorHandle: {fileID: 0}
+  nodeResources: {fileID: 0}
+  nodeStorage: {fileID: 0}
+  targetPosition: {fileID: 0}
+  utensilResources: []
+  capacityResources: 0
+  capacityResourcesMax: 10
+  timeWorkingResource: 0
+  rangeDistance: 0
+  canWorking: 1
 --- !u!1 &1701758165185650308
 GameObject:
   m_ObjectHideFlags: 0
@@ -4689,6 +4744,7 @@ GameObject:
   - component: {fileID: 3901425109710371622}
   - component: {fileID: 7447262076806379972}
   - component: {fileID: 6833141543293139120}
+  - component: {fileID: 6800500705640369946}
   m_Layer: 0
   m_Name: TT_Peasant(Clone)
   m_TagString: Untagged
@@ -4782,11 +4838,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981965717685314362}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 02ded044b8e0963439276550f50be6f9, type: 3}
-  m_Controller: {fileID: 9100000, guid: f5a5df21e2ce72749aab436d5667e57b, type: 2}
+  m_Avatar: {fileID: 9000000, guid: c7a8085b991b5b84883485bffbcaf296, type: 2}
+  m_Controller: {fileID: 9100000, guid: 15c869a1678e7d3488a1305c90b3a727, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -4807,6 +4863,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7447262076806379972}
+  animatorInfo: {fileID: 6800500705640369946}
+--- !u!114 &6800500705640369946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981965717685314362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8ec4571dbf9ee4c817f01afc735acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: Speed
+  wood: Wood
+  food: Food
+  gold: Gold
+  idle_State: Idle_State
+  run_State: Run_State
+  food_Harvest: Gathering_Food
+  gold_Mining: Villager@Axe-Chopping01
+  treeChopping: Pickaxe_Wood
 --- !u!1 &2011368942867795397
 GameObject:
   m_ObjectHideFlags: 0
@@ -5120,7 +5198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114767078948697673}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5144,7 +5222,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 4
-  m_Acceleration: 20
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 2000
   m_StoppingDistance: 0.1
@@ -5206,13 +5284,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32cfa3f4b12be594d80aa9aa47cedd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: 
+  unitName: Peasant
   description: 
-  foodCost: 0
-  woodCost: 0
-  goldCost: 0
-  buildTime: 0
-  minTier: 0
+  foodCost: 1
+  woodCost: 1
+  goldCost: 1
+  buildTime: 1
+  minTier: 1
 --- !u!114 &6513559633414716134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5225,13 +5303,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f1b3d2a85439c4086aadcdf805c214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityInfo: {fileID: 0}
-  healManager: {fileID: 0}
-  interactionObject: {fileID: 0}
-  unitInfo: {fileID: 0}
-  folder: {fileID: 0}
-  animatorHandle: {fileID: 0}
-  unitSO: {fileID: 0}
+  entityInfo: {fileID: 3905210351587201425}
+  healManager: {fileID: 8700694037990832073}
+  interactionObject: {fileID: 8821534802411197631}
+  unitInfo: {fileID: 2354472704959588134}
+  animatorHandle: {fileID: 6833141543293139120}
+  agent: {fileID: 4330210756043217224}
+  unitSO: {fileID: 11400000, guid: ee918ecfbaeb4084d9c2ef0ef9ddefc9, type: 2}
+  movementBehavior: {fileID: 6850142777335123128}
+  attackBehavior: {fileID: 214380841143355597}
 --- !u!1 &2171372955518892569
 GameObject:
   m_ObjectHideFlags: 0
@@ -11020,7 +11100,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7338306217572895193}
-  - component: {fileID: 1739347778148338868}
   m_Layer: 0
   m_Name: Behavior
   m_TagString: Untagged
@@ -11042,21 +11121,10 @@ Transform:
   m_Children:
   - {fileID: 6323439398500460737}
   - {fileID: 5278888973819670984}
+  - {fileID: 1809484123894284786}
   m_Father: {fileID: 5199460375624513882}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1739347778148338868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4348909224585746361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5c41370bd50b384d93836b977f03411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4478686317298860489
 GameObject:
   m_ObjectHideFlags: 0
@@ -14866,12 +14934,12 @@ MonoBehaviour:
   atkRange: 1
   atkSpeed: 1
   armor: 1
-  damage: 1
+  damage: 10
   health: 1
-  healthMax: 1
+  healthMax: 100
   critRatio: 1
-  type: 0
-  unitName: aaa
+  type: 19
+  unitName: Peasant
 --- !u!1 &6519293257556104787
 GameObject:
   m_ObjectHideFlags: 0
@@ -16348,6 +16416,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ebac40e85385349836852c43f37c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  rangeDistance: 0
+  animatorHandle: {fileID: 0}
+  navAgent: {fileID: 0}
+  isGathering: 0
+  isAttack: 0
 --- !u!1 &7467785452660849505
 GameObject:
   m_ObjectHideFlags: 0
@@ -17423,6 +17497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fafee02afca494c9dc6427ce8acc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &7780017607763482837
 GameObject:
   m_ObjectHideFlags: 0

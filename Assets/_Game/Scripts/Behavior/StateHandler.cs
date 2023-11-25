@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using AnnulusGames.LucidTools.Inspector;
 using UnityEngine;
 
 public class StateHandler : MonoBehaviour
 {
+    [SerializeField,ReadOnly] protected Transform target;
+  
     void Start()
     {
         
@@ -14,4 +18,12 @@ public class StateHandler : MonoBehaviour
     {
         
     }
+
+    public void SetTarget(Transform tf)
+    {
+        target = tf;
+    }
+
+
+ 
 }

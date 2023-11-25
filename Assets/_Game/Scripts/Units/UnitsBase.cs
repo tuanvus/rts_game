@@ -15,44 +15,60 @@ public class UnitsBase : EntityComponent, IHit
     [SerializeField] protected AnimatorHandle animatorHandle;
     [SerializeField] protected NavMeshAgent agent;
     [TitleHeader("Config")] [SerializeField] protected UnitSO unitSO;
+    [SerializeField] protected bool isAttack;
+    [TitleHeader("Behavior")] //------------------
+    [SerializeField]
+    protected MovementBehavior movementBehavior;
 
-   // [Button]
-    public void SetupField()
+    [SerializeField] protected AttackBehavior attackBehavior;
+
+    // [Button]
+     void SetupField()
     {
         entityInfo = GetComponent<GameEntityInfo>();
-        agent = GetComponent<NavMeshAgent>();
+        agent  = GetComponent<NavMeshAgent>();
         this.TryGetComponentInChildren(out healManager);
         this.TryGetComponentInChildren(out animatorHandle);
         this.TryGetComponentInChildren(out unitInfo);
-
+        this.TryGetComponentInChildren(out movementBehavior);
+        this.TryGetComponentInChildren(out attackBehavior);
 
 
         string folderPath = "Assets/_Game/SO_Data/Units/";
 
-        string path = folderPath +"/" + transform.name + ".asset";
+        string path = folderPath + "/" + transform.name + ".asset";
         if (File.Exists(path))
         {
             unitSO = UnityEditor.AssetDatabase.LoadAssetAtPath<UnitSO>(path);
         }
-  
-        
+
+
         TryGetComponent(out interactionObject);
         this.CopyAttributes(entityInfo, unitSO.entitySerializable);
         this.CopyAttributes(unitInfo, unitSO.entityStatSerializable);
     }
 
-    private void OnValidate()
+
+    protected virtual void OnValidate()
     {
         SetupField();
     }
 
-    public void TakeDamage(int damage)
+    private void Start()
     {
-        
+        movementBehavior.Initialization(animatorHandle, agent);
     }
 
-    public void Movement(Vector3 pos)
+    public void Movement(Vector3 target)
     {
-        agent.SetDestination(pos);
+        movementBehavior.MovingToTarget(target);
+    }
+    public void Attack(Transform target)
+    {
+        //attackBehavior.AttackTarget(target);
+    }
+
+    public void TakeDamage(int damage)
+    {
     }
 }
