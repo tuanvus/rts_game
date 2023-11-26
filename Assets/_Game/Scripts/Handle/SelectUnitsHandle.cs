@@ -107,7 +107,7 @@ public class SelectUnitsHandle : MonoBehaviour
 
                 foreach (var unit in selectUnits)
                 {
-                    unit.GetComponent<UnitsBase>().Movement(poinArrow.position);
+                    unit.GetComponent<UnitsBase>().Movement(poinArrow);
                 }
             }
 

@@ -54,14 +54,13 @@ public class UnitsBase : EntityComponent, IHit
         SetupField();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         movementBehavior.Initialization(animatorHandle, agent);
     }
 
-    public void Movement(Vector3 target)
+    public virtual void Movement(Transform target)
     {
-        movementBehavior.MovingToTarget(target);
     }
     public void Attack(Transform target)
     {

@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gatherType: 0
+  animator: {fileID: 3132742349593503001}
   amount: 0
 --- !u!1 &5515676909922485871
 GameObject:
@@ -349,7 +350,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3570997293596958932, guid: 61d7806f22fc0b0418035e05b88b9f84, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d7806f22fc0b0418035e05b88b9f84, type: 3}
 --- !u!4 &6757696683156386307 stripped
 Transform:
@@ -424,7 +426,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree2_autumn
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5528817803451181069, guid: 79c2f6d7f67fe304991d687828c848ea, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 79c2f6d7f67fe304991d687828c848ea, type: 3}
 --- !u!4 &7044888437601779799 stripped
 Transform:

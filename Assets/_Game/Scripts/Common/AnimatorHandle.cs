@@ -11,7 +11,7 @@ public class AnimatorHandle : MonoBehaviour
     // [AnimatorParam] public string Speed;
      [SerializeField] AnimatorInfo animatorInfo;
 
-     public AnimatorInfo GetParam => animatorInfo;
+     public AnimatorInfo Data => animatorInfo;
      
      
     private void OnValidate()
@@ -32,7 +32,7 @@ public class AnimatorHandle : MonoBehaviour
 
     public void Initialized()
     {
-        SetFloatAnimation(GetParam.speed,0);
+        SetFloatAnimation(Data.p_Speed,0);
     }
 
     public void PlayAnimation(string nameAnimation)
@@ -48,12 +48,21 @@ public class AnimatorHandle : MonoBehaviour
 
     public void SetFloatAnimation(string nameAnimation, float value)
     {
-        Debug.Log("nameAnimation = " + nameAnimation + " value = " + value);
+      //  Debug.Log("nameAnimation = " + nameAnimation + " value = " + value);
         animator.SetFloat(nameAnimation, value);
     }
 
     public void SetBoolAnimation(string nameAnimation, bool value)
     {
         animator.SetBool(nameAnimation, value);
+    }
+    
+    public void AddEvent(string nameAni,AnimationEventType eventType, Action action = null)
+    {
+        animator.AddEvent(nameAni,eventType, (animator) =>
+        {
+            action?.Invoke();
+        });
+
     }
 }

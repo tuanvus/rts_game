@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using AnnulusGames.LucidTools.Inspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AnimatorInfo : MonoBehaviour
 {
-    [TitleHeader("Param")] [AnimatorParam] public string speed;
-    [AnimatorParam] public string wood;
-    [AnimatorParam] public string food;
-    [AnimatorParam] public string gold;
-    [AnimatorParam] public string idle_State;
-    [AnimatorParam] public string run_State;
+    [FormerlySerializedAs("speed")]
+    [TitleHeader("Param")] //------------
+    [AnimatorParam]
+    public string p_Speed;
+
+    [AnimatorParam] public string p_Wood;
+    [AnimatorParam] public string p_Food;
+    [AnimatorParam] public string p_Gold;
+    [AnimatorParam] public string p_Idle_State;
+    [AnimatorParam] public string p_Run_State;
+
 
     [TitleHeader("AnimationName")] //-------
     [AnimatorAnim]
-    public string food_Harvest;
+    public string ani_Food_Harvest;
 
-    [AnimatorAnim] public string gold_Mining;
-    [AnimatorAnim] public string treeChopping;
+    [AnimatorAnim] public string ani_Gold_Mining;
+  [AnimatorAnim] public string ani_TreeChopping;
 }

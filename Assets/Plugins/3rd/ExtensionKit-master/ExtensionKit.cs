@@ -3215,6 +3215,19 @@ public static class ComponentExtension
             result = null;
         }
     }
+    public static void TryGetComponent<T>(this Component component, out T result) where T : Component
+    {
+        var myComponent = component.GetComponent<T>();
+        if (myComponent != null)
+        {
+            result = myComponent;
+        }
+        else
+        {
+            //result = null;
+            result = default(T);
+        }
+    }
 
     public static void CopyAttributes(this Component c, object source, object destination)
     {
