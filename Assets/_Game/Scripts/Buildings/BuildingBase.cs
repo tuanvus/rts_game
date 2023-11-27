@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using AnnulusGames.LucidTools.Inspector;
 using UnityEngine;
 
@@ -13,6 +14,14 @@ public class BuildingBase : EntityComponent, IHit
         entityInfo = GetComponent<GameEntityInfo>();
         this.TryGetComponentInChildren(out healManager);
         this.TryGetComponentInChildren(out unitInfo);
+        string folderPath = "Assets/_Game/SO_Data/Building/";
+
+        string nameFile = transform.name.Replace("Building", "");
+        string path = folderPath + "/" + nameFile+ ".asset";
+        if (File.Exists(path))
+        {
+            buildingSO = UnityEditor.AssetDatabase.LoadAssetAtPath<BuildingSO>(path);
+        }
 
         TryGetComponent(out interactionObject);
        // this.CopyAttributes(entityInfo, buildingSO.entitySerializable);

@@ -2796,7 +2796,7 @@ GameObject:
   - component: {fileID: 277221109}
   - component: {fileID: 277221108}
   - component: {fileID: 277221107}
-  - component: {fileID: 277221106}
+  - component: {fileID: 277221110}
   m_Layer: 0
   m_Name: ArcheryBuilding
   m_TagString: Untagged
@@ -2825,23 +2825,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &277221106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277221104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b125aea81f2beae4abd55fef291d6b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityInfo: {fileID: 0}
-  healManager: {fileID: 0}
-  interactionObject: {fileID: 0}
-  unitInfo: {fileID: 0}
-  buildingSO: {fileID: 0}
 --- !u!114 &277221107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2886,6 +2869,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b799b30e6c7fe47973e2e8c4f5aecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &277221110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277221104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39ca3973e77be0479c8eda178b8548c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityInfo: {fileID: 277221107}
+  healManager: {fileID: 1673387115}
+  interactionObject: {fileID: 277221108}
+  unitInfo: {fileID: 886501986}
+  buildingSO: {fileID: 0}
 --- !u!1001 &285028426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11837,7 +11837,7 @@ PrefabInstance:
         type: 3}
       propertyPath: buildingBase
       value: 
-      objectReference: {fileID: 277221106}
+      objectReference: {fileID: 0}
     - target: {fileID: 1058376614829932650, guid: 222cb52b087bb334686d68a1b1df28ca,
         type: 3}
       propertyPath: capacityResourcesMax
@@ -11913,6 +11913,11 @@ PrefabInstance:
       propertyPath: speed
       value: shield_01_idle
       objectReference: {fileID: 0}
+    - target: {fileID: 6513559633414716134, guid: 222cb52b087bb334686d68a1b1df28ca,
+        type: 3}
+      propertyPath: buildingBase
+      value: 
+      objectReference: {fileID: 277221110}
     - target: {fileID: 6800500705640369946, guid: 222cb52b087bb334686d68a1b1df28ca,
         type: 3}
       propertyPath: food
@@ -12382,12 +12387,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25df65196378c3548a84086672e3c9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  folderSavePrefab: {fileID: 0}
-  folderSaveCs: {fileID: 0}
+  folderSavePrefab: {fileID: 102900000, guid: 8241ee4c71957ae488fc053e2a81e910, type: 3}
+  folderSaveCs: {fileID: 102900000, guid: 04e776d218ddbfc41a508f22efaa379c, type: 3}
   prefabBaseBuilding: {fileID: 0}
-  objBuildingModel: []
-  objConstructionModel: []
-  nameT: 
+  objBuildingModel:
+  - {fileID: 100000, guid: 7036859d28e2cb84c9948a1fcf49fe95, type: 3}
+  - {fileID: 100000, guid: e2f28d7d7478cb64597ebb9077abfe6e, type: 3}
+  - {fileID: 100000, guid: a43f0d6131f84de40b182eb70bb23b87, type: 3}
+  - {fileID: 100000, guid: 637b3bb1a53fd584b8b2f29eddb05290, type: 3}
+  - {fileID: 100000, guid: 520e20395d1150a4c94174228bde0499, type: 3}
+  - {fileID: 100000, guid: aec20226064bbcc4d850e8da90e49a4b, type: 3}
+  - {fileID: 100000, guid: 05035b78d90b21f43854dfe010ccd289, type: 3}
+  - {fileID: 100000, guid: 003306f67c7bed24b8be307fb52fb0ab, type: 3}
+  - {fileID: 100000, guid: a219455911288e84da9a9c5f55fd95c6, type: 3}
+  - {fileID: 100000, guid: 06905b5e993435c4e9526f63c49622e3, type: 3}
+  - {fileID: 100000, guid: fc4ed9ef41f9dc944af60388921a8746, type: 3}
+  - {fileID: 100000, guid: e80371d003bd70d439af07f3facb22ea, type: 3}
+  - {fileID: 100000, guid: 0c6eb60ad59a81145839dbc6dedcbc3f, type: 3}
+  - {fileID: 100000, guid: 9bf280570cf5dce45a29b84470a52c7e, type: 3}
+  - {fileID: 100000, guid: 5921e45280d702e44ad0fb582ac16d26, type: 3}
+  - {fileID: 100000, guid: c5f43a47e4b64c14da6e0081f639fdd3, type: 3}
+  - {fileID: 100000, guid: 38f7e2d8e36aee34ea1626e31c1db895, type: 3}
+  - {fileID: 100000, guid: 5573396f6b8833f4dbd78bbb53d56df5, type: 3}
+  objConstructionModel:
+  - {fileID: 100000, guid: 9018b9e829e697640b479e00dd8fdcc0, type: 3}
+  - {fileID: 100000, guid: 27fdd863cab8d1a419f247f4ed7a2b01, type: 3}
+  - {fileID: 100000, guid: 89fb5f68a7a07e24aa03504d5a034e9e, type: 3}
+  - {fileID: 100000, guid: a2bc843dcc7a5be45993257d22444585, type: 3}
+  - {fileID: 100000, guid: 16c16ea3927925b4a85067b12080333d, type: 3}
+  - {fileID: 100000, guid: 75cb71cd68996f147af86badbf154a13, type: 3}
+  - {fileID: 100000, guid: ee920d8c79ea3684abbabe92ec16e8c4, type: 3}
+  - {fileID: 100000, guid: a65bd061cdf100b4ba4e4379a5ae6aec, type: 3}
+  - {fileID: 100000, guid: 1b468518a5f1b10489a754019fbd290c, type: 3}
+  - {fileID: 100000, guid: 8841aadd935eb6e4f9567e5a24a1f945, type: 3}
+  - {fileID: 100000, guid: b18013bceef29894d95932ffbdf069c0, type: 3}
+  - {fileID: 100000, guid: 25ef05172876b8742b290e10ba4393cf, type: 3}
+  - {fileID: 100000, guid: c4bb27f050a2ef4439fb736e16b2bded, type: 3}
+  - {fileID: 100000, guid: b1ff534b3931e674e8e475faa59eb659, type: 3}
+  - {fileID: 100000, guid: 9f1a76b274a57c841b1aa03e7c5e5200, type: 3}
+  - {fileID: 100000, guid: 70a74a7e3a8172e4d9fc5cd02c4800ba, type: 3}
+  - {fileID: 100000, guid: 3fae66635eefa35409bdeb9bcad140ff, type: 3}
+  - {fileID: 100000, guid: 2969cfa0fe7f35d4c94a50c9fb1d9f8c, type: 3}
+  - {fileID: 100000, guid: 68dc2d4464799a947be0ba3c5b424331, type: 3}
+  - {fileID: 100000, guid: c650d1b47e984954fa4415d5b8fba967, type: 3}
+  - {fileID: 100000, guid: 23f5e8bfeddc6454da643b5f31d0ff9a, type: 3}
+  - {fileID: 100000, guid: f1d267045620d8f40a446655a93df223, type: 3}
+  - {fileID: 100000, guid: 36773d88f5d34834587aff054644b010, type: 3}
+  - {fileID: 100000, guid: ecd750c81ddec2c48abc6d35830d1422, type: 3}
+  - {fileID: 100000, guid: c8f46a36db3ed5d4ba1ec3877467e8ca, type: 3}
+  - {fileID: 100000, guid: cca1c5a0500e0194cbfcc9780cb0f8d5, type: 3}
+  - {fileID: 100000, guid: 2c19f74705f3b6b44af06171a67178a1, type: 3}
+  - {fileID: 100000, guid: b40bcd86f471a554696e16e6e41c7e0b, type: 3}
+  - {fileID: 100000, guid: ce8b6056e281f7c40b4f6f25ef610477, type: 3}
+  - {fileID: 100000, guid: 240875b6dee8d804883a4a485f4ed145, type: 3}
+  - {fileID: 100000, guid: a6360e359f4767e41a49aec1887be29c, type: 3}
+  - {fileID: 100000, guid: 1e99ddaf9b6c01949bda36d1292dce52, type: 3}
+  - {fileID: 100000, guid: 48f5ed055a55d3e4e8a0d58338a79109, type: 3}
+  - {fileID: 100000, guid: 05435a1c90d6a9d4b88a33afe6adc4cd, type: 3}
+  - {fileID: 100000, guid: 8bfa3476d6d02f04aac71fd7a8d1da0a, type: 3}
+  - {fileID: 100000, guid: 1fa72418f34eb6d42adaa061aa64c0d9, type: 3}
+  - {fileID: 100000, guid: ef28b3db6e79dcc459373be2744bc41d, type: 3}
+  - {fileID: 100000, guid: 88d9a27c1cb01384a9d0cba5ea8ed91f, type: 3}
+  - {fileID: 100000, guid: 84027b74851eeb942a03f4a723b1a66e, type: 3}
+  - {fileID: 100000, guid: 8410783fe3ef98c4e8b34dcdc9b92e41, type: 3}
+  - {fileID: 100000, guid: 5e5b7457c68ebd447b8a03dd55c4f660, type: 3}
+  - {fileID: 100000, guid: caa0b36c4f60f7b47a461c12cd9fe8cd, type: 3}
+  - {fileID: 100000, guid: e9f3519d8a967cf4a820ecd5979e12b1, type: 3}
+  - {fileID: 100000, guid: 812acd5205a724c40b7cd7d493a48bdd, type: 3}
+  - {fileID: 100000, guid: 98633bc2a8b69fb4ab21231dddbdbf0e, type: 3}
+  - {fileID: 100000, guid: ce6dff553694e2642aea821b694800b3, type: 3}
+  - {fileID: 100000, guid: 993cee789332e584d88bf4e7b9a5e1a9, type: 3}
+  - {fileID: 100000, guid: 2537389e7f9749544a04f0d6a3b0b5c8, type: 3}
+  - {fileID: 100000, guid: 914c6a6c8577a644695c9d94116c598d, type: 3}
+  - {fileID: 100000, guid: ce3301c5c5de86444b56186a86dabcdc, type: 3}
+  - {fileID: 100000, guid: 922ea54d47119074d8b9b4e757b417e6, type: 3}
+  - {fileID: 100000, guid: c8b0da940c5dd9a408110f5e34fb5799, type: 3}
+  - {fileID: 100000, guid: 4f825c353b2346344a464e665e8a8f59, type: 3}
+  - {fileID: 100000, guid: de6238c57a8f0ac478c92903b1b153cc, type: 3}
+  nameT: Archery,Barracks,Blacksmith,Castle,Farm,Granary,House,Keep,Library,LumberMill,MageTower,Market,Stables,Temple,Tower,TownHall,Wall,Workshop,
 --- !u!1 &1351136653
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,7 +46,8 @@ public class ToolCreatorBuilding : MonoBehaviour
             unitAgent.transform.localScale = Vector3.one * 2;
             unitAgent.AddComponent(typeof(AnimatorHandle));
             string prefabName = unitModel.name;
-            prefabName = prefabName.Replace("TT_", "");
+            prefabName = prefabName.Replace("_A", "");
+            prefabName = prefabName.Replace("_A_1x1", "");
 
             unit.name = prefabName;
             if (!string.IsNullOrEmpty(prefabName) && GetComponent(prefabName) == null)
@@ -90,7 +91,8 @@ public class ToolCreatorBuilding : MonoBehaviour
             if (dataPrefab != null)
             {
                 string prefabName = dataPrefab.name;
-                prefabName = prefabName.Replace("TT_", "");
+                prefabName = prefabName.Replace("_A", "");
+                prefabName = prefabName.Replace("_1x1", "");
                 nameT += prefabName + ",";
                 string generatedCSharp = GenJsonToCshap(prefabName);
                 CreatorCs(prefabName+"Building", generatedCSharp);
@@ -130,6 +132,57 @@ public class ToolCreatorBuilding : MonoBehaviour
         catch (Exception ex)
         {
             Debug.LogWarning(ex);
+        }
+    }
+      [Button]
+    public void CreatorInventoryItem()
+    {
+        foreach (var i in objBuildingModel)
+        {
+            string prefabName = i.name;
+            prefabName = prefabName.Replace("TT_", "");
+            prefabName = prefabName.Replace("_A", "");
+            prefabName = prefabName.Replace("_1x1", "");
+            string itemName = prefabName;
+            string relativePath = "_Game/SO_Data/Building/" + itemName + ".asset";
+
+            string path = "Assets/" + relativePath; // Make sure the path is relative to the "Assets" folder
+
+            if (File.Exists(path))
+            {
+                // Asset already exists at the specified path
+                BuildingSO existingItem = UnityEditor.AssetDatabase.LoadAssetAtPath<BuildingSO>(path);
+                if (existingItem != null)
+                {
+                    existingItem.name = itemName;
+                    existingItem.timeBuildingHouse = 5;
+                    existingItem.timeSpawnUnit = 1.5f;
+                    existingItem.type = EnumConverter.StringToEnum<BuildingType>(itemName.ToUpper());
+
+                    EditorUtility.SetDirty(existingItem);
+                    AssetDatabase.SaveAssets();
+                    AssetDatabase.Refresh();
+                }
+            }
+            else
+            {
+                // Tạo một ScriptableObject theo tên i.name
+                BuildingSO newItem = ScriptableObject.CreateInstance<BuildingSO>();
+
+                newItem.name = itemName;
+                newItem.name = itemName;
+                newItem.timeBuildingHouse = 5;
+                newItem.timeSpawnUnit = 1.5f;
+                newItem.type = EnumConverter.StringToEnum<BuildingType>(itemName.ToUpper());
+
+                // newItem.data.typeItem = i.type;
+
+                // Lưu ScriptableObject vào đường dẫn đã chỉ định
+                AssetDatabase.CreateAsset(newItem, path);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+                Debug.Log("Đã tạo tệp " + itemName + ".asset.");
+            }
         }
     }
 }
